@@ -72,8 +72,11 @@ class _NoteCardState extends State<NoteCard> {
                     Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                          builder: (BuildContext context) =>
-                              EditNote(noteEdit: widget.note),
+                          builder: (BuildContext context) => EditNote(
+                            noteEdit: widget.note,
+                            dismissNotification: widget.dismissNotification,
+                            createNotification: widget.createNotification,
+                          ),
                           fullscreenDialog: true,
                         )).then((value) => widget.refreshHome());
                   },
@@ -109,6 +112,7 @@ class _NoteCardState extends State<NoteCard> {
         Navigator.of(context).pop();
         Navigator.of(context).pop();
         _delete();
+        if(widget.note.pinned == 1){widget.dismissNotification(widget.note.id!);}
         widget.refreshHome();
       },
     );
@@ -140,7 +144,7 @@ class _NoteCardState extends State<NoteCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -154,13 +158,10 @@ class _NoteCardState extends State<NoteCard> {
               ListTile(
                 contentPadding: const EdgeInsets.fromLTRB(16, 0, 5, 0),
                 title: Text(widget.note.title!,
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: Theme.of(context)
-                            .accentTextTheme
-                            .headline1!
-                            .color)),
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                    )),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

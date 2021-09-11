@@ -3,13 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:notef_fschmatz/db/note_dao.dart';
 
 class NewNote extends StatefulWidget {
+  Function(int, String, String) createNotification;
+
+  NewNote({Key? key, required this.createNotification}) : super(key: key);
 
   @override
   _NewNoteState createState() => _NewNoteState();
 }
 
 class _NewNoteState extends State<NewNote> {
-
   final dbNotes = NoteDao.instance;
   TextEditingController customControllerTitle = TextEditingController();
   TextEditingController customControllerText = TextEditingController();
@@ -18,10 +20,14 @@ class _NewNoteState extends State<NewNote> {
     Map<String, dynamic> row = {
       NoteDao.columnTitle: customControllerTitle.text,
       NoteDao.columnText: customControllerText.text,
-      NoteDao.columnPinned: 0
+      NoteDao.columnPinned: 1
     };
     final id = await dbNotes.insert(row);
-    print('id = $id');
+    widget.createNotification(
+      id,
+      customControllerTitle.text,
+      customControllerText.text,
+    );
   }
 
   String checkProblems() {
@@ -69,7 +75,6 @@ class _NewNoteState extends State<NewNote> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: const Text("New Note"),
@@ -93,7 +98,6 @@ class _NewNoteState extends State<NewNote> {
           ],
         ),
         body: ListView(children: [
-
           ListTile(
             leading: const SizedBox(
               height: 0.1,
@@ -122,7 +126,6 @@ class _NewNoteState extends State<NewNote> {
               ),
             ),
           ),
-
           ListTile(
             leading: const SizedBox(
               height: 0.1,
@@ -136,7 +139,6 @@ class _NewNoteState extends State<NewNote> {
           ListTile(
             leading: const Icon(Icons.notes_outlined),
             title: TextField(
-              autofocus: true,
               minLines: 1,
               maxLines: 12,
               maxLength: 200,
@@ -151,9 +153,6 @@ class _NewNoteState extends State<NewNote> {
               ),
             ),
           ),
-        ])
-    );
-
+        ]));
   }
 }
-

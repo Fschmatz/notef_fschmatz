@@ -6,8 +6,15 @@ import 'package:notef_fschmatz/db/note_dao.dart';
 
 class EditNote extends StatefulWidget {
   Note noteEdit;
+  Function(int, String, String) createNotification;
+  Function(int) dismissNotification;
 
-  EditNote({Key? key, required this.noteEdit}) : super(key: key);
+  EditNote(
+      {Key? key,
+      required this.noteEdit,
+      required this.createNotification,
+      required this.dismissNotification})
+      : super(key: key);
 
   @override
   _EditNoteState createState() => _EditNoteState();
@@ -32,6 +39,14 @@ class _EditNoteState extends State<EditNote> {
       NoteDao.columnText: customControllerText.text,
       NoteDao.columnPinned: widget.noteEdit.pinned
     };
+    if(widget.noteEdit.pinned == 1){
+      widget.dismissNotification(widget.noteEdit.id!);
+      widget.createNotification(
+        widget.noteEdit.id!,
+        customControllerTitle.text,
+        customControllerText.text,
+      );
+    }
     final update = await dbNotes.update(row);
   }
 
@@ -116,7 +131,6 @@ class _EditNoteState extends State<EditNote> {
           ListTile(
             leading: const Icon(Icons.notes_outlined),
             title: TextField(
-              autofocus: true,
               minLines: 1,
               maxLines: 12,
               maxLength: 100,
@@ -144,7 +158,6 @@ class _EditNoteState extends State<EditNote> {
           ListTile(
             leading: const Icon(Icons.notes_outlined),
             title: TextField(
-              autofocus: true,
               minLines: 1,
               maxLines: 12,
               maxLength: 200,

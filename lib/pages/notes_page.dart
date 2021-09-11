@@ -39,7 +39,7 @@ class _NotesPageState extends State<NotesPage> {
           title: textTitle,
           notificationLayout: NotificationLayout.BigText,
           locked: true,
-          autoCancel: false,//não fecha a not ao abrir por ela
+          autoCancel: false,//não fecha a notif ao abrir por ela
           body: textBody),
     /*  actionButtons: [
         NotificationActionButton(
@@ -71,10 +71,8 @@ class _NotesPageState extends State<NotesPage> {
             : ListView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: [
-                    ListView.separated(
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 12,
-                      ),
+                    ListView.builder(
+
                       physics: const ScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: dayNotesList.length,
@@ -102,7 +100,7 @@ class _NotesPageState extends State<NotesPage> {
           Navigator.push(
               context,
               MaterialPageRoute<void>(
-                builder: (BuildContext context) => NewNote(),
+                builder: (BuildContext context) => NewNote(createNotification: createNotification,),
                 fullscreenDialog: true,
               )).then((value) => getAll());
         },

@@ -17,7 +17,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Notef'),
-          elevation: 0,
           actions: [
             IconButton(
                 icon: Icon(
