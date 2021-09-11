@@ -6,7 +6,7 @@ class AppInfoPage extends StatelessWidget {
   const AppInfoPage({Key? key}) : super(key: key);
 
   _launchGithub()  {
-    const url = '';
+    const url = 'https://github.com/Fschmatz/notef_fschmatz';
     launch(url);
   }
 
@@ -53,17 +53,6 @@ class AppInfoPage extends StatelessWidget {
           const ListTile(
             leading: Icon( Icons.info_outline),
             title: Text(
-              "( This is The Way! )",
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-          ),
-          const ListTile(
-            leading: SizedBox(
-              height: 0.1,
-            ),
-            title: Text(
               "Application created using Flutter and the Dart language, used for testing and learning.",
               style: TextStyle(
                 fontSize: 16,
@@ -103,7 +92,7 @@ class AppInfoPage extends StatelessWidget {
           const ListTile(
             leading: Icon(Icons.messenger_outline),
             title: Text(
-              " ",
+              "The key to efficient development is to make interesting new mistakes.",
               style: TextStyle(fontSize: 16),
             ),
           ),

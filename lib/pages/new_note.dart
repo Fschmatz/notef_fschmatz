@@ -1,8 +1,6 @@
-/*
-import 'package:day_study/db/note_dao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
+import 'package:notef_fschmatz/db/note_dao.dart';
 
 class NewNote extends StatefulWidget {
 
@@ -12,34 +10,23 @@ class NewNote extends StatefulWidget {
 
 class _NewNoteState extends State<NewNote> {
 
-  final dbDayNotes = DayNoteDao.instance;
-  late DateTime dateSelected;
-
-  TextEditingController customControllerNote = TextEditingController();
-
-
-  @override
-  void initState() {
-    super.initState();
-    dateSelected = DateTime.now();
-  }
-
-  getSelectedDateFormatted() {
-    return DateFormat('dd/MM').format(dateSelected);
-  }
+  final dbNotes = NoteDao.instance;
+  TextEditingController customControllerTitle = TextEditingController();
+  TextEditingController customControllerText = TextEditingController();
 
   void _saveNote() async {
     Map<String, dynamic> row = {
-      DayNoteDao.columnNote: customControllerNote.text,
-      DayNoteDao.columnDay: getSelectedDateFormatted().toString(),
+      NoteDao.columnTitle: customControllerTitle.text,
+      NoteDao.columnText: customControllerText.text,
+      NoteDao.columnPinned: 0
     };
-    final id = await dbDayNotes.insert(row);
+    final id = await dbNotes.insert(row);
     print('id = $id');
   }
 
   String checkProblems() {
     String errors = "";
-    if (customControllerNote.text.isEmpty) {
+    if (customControllerTitle.text.isEmpty) {
       errors += "Note is empty\n";
     }
     return errors;
@@ -47,7 +34,7 @@ class _NewNoteState extends State<NewNote> {
 
   showAlertDialogErrors(BuildContext context) {
     Widget okButton = TextButton(
-      child: Text(
+      child: const Text(
         "Ok",
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
@@ -58,13 +45,13 @@ class _NewNoteState extends State<NewNote> {
 
     AlertDialog alert = AlertDialog(
       elevation: 3.0,
-      title: Text(
+      title: const Text(
         "Error",
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
       content: Text(
         checkProblems(),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 18,
         ),
       ),
@@ -80,33 +67,18 @@ class _NewNoteState extends State<NewNote> {
     );
   }
 
-  chooseDate() async {
-    DateTime? data = await showDatePicker(
-        context: context,
-        initialDate: dateSelected,
-        firstDate: DateTime(DateTime.now().year - 5),
-        lastDate: DateTime(DateTime.now().year + 5));
-
-    if (data != null) {
-      setState(() {
-        dateSelected = data;
-      });
-    }
-  }
-
-
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("New Note"),
+          title: const Text("New Note"),
           elevation: 0,
           actions: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
               child: IconButton(
-                icon: Icon(Icons.save_outlined),
+                icon: const Icon(Icons.save_outlined),
                 tooltip: 'Save',
                 onPressed: () {
                   if (checkProblems().isEmpty) {
@@ -121,25 +93,38 @@ class _NewNoteState extends State<NewNote> {
           ],
         ),
         body: ListView(children: [
+
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
-            title: Text("Choose Date".toUpperCase(),
+            title: Text("Title".toUpperCase(),
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
                     color: Theme.of(context).accentTextTheme.headline1!.color)),
           ),
           ListTile(
-            onTap: () {
-              chooseDate();
-            },
-            leading: Icon(Icons.calendar_today_outlined),
-            title: Text(getSelectedDateFormatted().toString()),
+            leading: const Icon(Icons.notes_outlined),
+            title: TextField(
+              autofocus: true,
+              minLines: 1,
+              maxLines: 12,
+              maxLength: 100,
+              maxLengthEnforcement: MaxLengthEnforcement.enforced,
+              controller: customControllerTitle,
+              decoration: InputDecoration(
+                focusColor: Theme.of(context).accentColor,
+                helperText: "* Required",
+              ),
+              style: const TextStyle(
+                fontSize: 17,
+              ),
+            ),
           ),
+
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
             title: Text("Note".toUpperCase(),
@@ -149,19 +134,19 @@ class _NewNoteState extends State<NewNote> {
                     color: Theme.of(context).accentTextTheme.headline1!.color)),
           ),
           ListTile(
-            leading: Icon(Icons.notes_outlined),
+            leading: const Icon(Icons.notes_outlined),
             title: TextField(
               autofocus: true,
               minLines: 1,
               maxLines: 12,
-              maxLength: 2000,
+              maxLength: 200,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
-              controller: customControllerNote,
+              controller: customControllerText,
               decoration: InputDecoration(
                 focusColor: Theme.of(context).accentColor,
                 helperText: "* Required",
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 17,
               ),
             ),
@@ -171,4 +156,4 @@ class _NewNoteState extends State<NewNote> {
 
   }
 }
-*/
+

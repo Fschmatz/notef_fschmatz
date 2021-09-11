@@ -10,6 +10,7 @@ class NoteDao {
 
   static const table = 'notes';
   static const columnId = 'id';
+  static const columnTitle = 'title';
   static const columnText = 'text';
   static const columnPinned = 'pinned';
 
@@ -35,8 +36,9 @@ class NoteDao {
     await db.execute('''
           CREATE TABLE $table (
            $columnId INTEGER PRIMARY KEY,
+           $columnTitle TEXT NOT NULL,
            $columnText TEXT NOT NULL,
-           $columnPinned INTEGER
+           $columnPinned INTEGER NOT NULL
           )
           ''');
   }
@@ -55,6 +57,11 @@ class NoteDao {
   Future<List<Map<String, dynamic>>> queryAllRowsDesc() async {
     Database db = await instance.database;
     return await db.rawQuery('SELECT * FROM $table ORDER BY id DESC');
+  }
+
+  Future<List<Map<String, dynamic>>> queryAllOrderPinnedState() async {
+    Database db = await instance.database;
+    return await db.rawQuery('SELECT * FROM $table ORDER BY pinned DESC');
   }
 
   Future<int> update(Map<String, dynamic> row) async {

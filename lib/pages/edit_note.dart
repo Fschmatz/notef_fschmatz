@@ -1,46 +1,43 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:notef_fschmatz/classes/note.dart';
+import 'package:notef_fschmatz/db/note_dao.dart';
 
 class EditNote extends StatefulWidget {
-  DayNote dayNoteEdit;
+  Note noteEdit;
 
-  EditNote({Key? key, required this.dayNoteEdit}) : super(key: key);
+  EditNote({Key? key, required this.noteEdit}) : super(key: key);
 
   @override
   _EditNoteState createState() => _EditNoteState();
 }
 
 class _EditNoteState extends State<EditNote> {
-  final dbDayNotes = NoteDao.instance;
-  late DateTime dateSelected;
-
-  TextEditingController customControllerNote = TextEditingController();
+  final dbNotes = NoteDao.instance;
+  TextEditingController customControllerTitle = TextEditingController();
+  TextEditingController customControllerText = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    customControllerNote.text = widget.dayNoteEdit.note;
-    dateSelected = DateFormat('dd/MM').parse(widget.dayNoteEdit.day);
+    customControllerTitle.text = widget.noteEdit.title!;
+    customControllerText.text = widget.noteEdit.text!;
   }
 
-  getSelectedDateFormatted() {
-    return DateFormat('dd/MM').format(dateSelected);
-  }
-
-  void _updateDayNote() async {
+  void _updateNote() async {
     Map<String, dynamic> row = {
-      DayNoteDao.columnId: widget.dayNoteEdit.id,
-      DayNoteDao.columnDay: getSelectedDateFormatted().toString(),
-      DayNoteDao.columnNote: customControllerNote.text,
+      NoteDao.columnId: widget.noteEdit.id,
+      NoteDao.columnTitle: customControllerTitle.text,
+      NoteDao.columnText: customControllerText.text,
+      NoteDao.columnPinned: widget.noteEdit.pinned
     };
-    final update = await dbDayNotes.update(row);
+    final update = await dbNotes.update(row);
   }
 
   String checkProblems() {
     String errors = "";
-    if (customControllerNote.text.isEmpty) {
+    if (customControllerTitle.text.isEmpty) {
       errors += "Note is empty\n";
     }
     return errors;
@@ -48,7 +45,7 @@ class _EditNoteState extends State<EditNote> {
 
   showAlertDialogErrors(BuildContext context) {
     Widget okButton = TextButton(
-      child: Text(
+      child: const Text(
         "Ok",
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
@@ -59,13 +56,13 @@ class _EditNoteState extends State<EditNote> {
 
     AlertDialog alert = AlertDialog(
       elevation: 3.0,
-      title: Text(
+      title: const Text(
         "Error",
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
       content: Text(
         checkProblems(),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 18,
         ),
       ),
@@ -81,35 +78,21 @@ class _EditNoteState extends State<EditNote> {
     );
   }
 
-  chooseDate() async {
-    DateTime? data = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(DateTime.now().year - 5),
-        lastDate: DateTime(DateTime.now().year + 5));
-
-    if (data != null) {
-      setState(() {
-        dateSelected = data;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Edit Note"),
+          title: const Text("Edit Note"),
           elevation: 0,
           actions: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
               child: IconButton(
-                icon: Icon(Icons.save_outlined),
+                icon: const Icon(Icons.save_outlined),
                 tooltip: 'Save',
                 onPressed: () {
                   if (checkProblems().isEmpty) {
-                    _updateDayNote();
+                    _updateNote();
                     Navigator.of(context).pop();
                   } else {
                     showAlertDialogErrors(context);
@@ -121,24 +104,35 @@ class _EditNoteState extends State<EditNote> {
         ),
         body: ListView(children: [
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
-            title: Text("Choose Date".toUpperCase(),
+            title: Text("Title".toUpperCase(),
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
                     color: Theme.of(context).accentTextTheme.headline1!.color)),
           ),
           ListTile(
-            onTap: () {
-              chooseDate();
-            },
-            leading: Icon(Icons.calendar_today_outlined),
-            title: Text(getSelectedDateFormatted().toString()),
+            leading: const Icon(Icons.notes_outlined),
+            title: TextField(
+              autofocus: true,
+              minLines: 1,
+              maxLines: 12,
+              maxLength: 100,
+              maxLengthEnforcement: MaxLengthEnforcement.enforced,
+              controller: customControllerTitle,
+              decoration: InputDecoration(
+                focusColor: Theme.of(context).accentColor,
+                helperText: "* Required",
+              ),
+              style: const TextStyle(
+                fontSize: 17,
+              ),
+            ),
           ),
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
             title: Text("Note".toUpperCase(),
@@ -148,19 +142,19 @@ class _EditNoteState extends State<EditNote> {
                     color: Theme.of(context).accentTextTheme.headline1!.color)),
           ),
           ListTile(
-            leading: Icon(Icons.notes_outlined),
+            leading: const Icon(Icons.notes_outlined),
             title: TextField(
               autofocus: true,
               minLines: 1,
               maxLines: 12,
-              maxLength: 2000,
+              maxLength: 200,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
-              controller: customControllerNote,
+              controller: customControllerText,
               decoration: InputDecoration(
                 focusColor: Theme.of(context).accentColor,
                 helperText: "* Required",
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 17,
               ),
             ),
@@ -168,4 +162,3 @@ class _EditNoteState extends State<EditNote> {
         ]));
   }
 }
-*/

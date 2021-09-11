@@ -58,24 +58,24 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF202022),
-    accentColor: Colors.amberAccent[100],
-    scaffoldBackgroundColor: const Color(0xFF202022),
+    primaryColor: const Color(0xFF1E1E20),
+    accentColor: const Color(0xFFFF965b),
+    scaffoldBackgroundColor: const Color(0xFF1E1E20),
     appBarTheme: const AppBarTheme(
-      color:  Color(0xFF202022),
+      color:  Color(0xFF1E1E20),
     ),
     cardTheme: const CardTheme(
-      color: Color(0xFF2D2D2F),
+      color: Color(0xFF2A2A2C),
     ),
     dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFF2D2D2F),
+      backgroundColor: Color(0xFF1E1E20),
     ),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding: const EdgeInsets.symmetric(
             vertical: 15.0, horizontal: 10.0),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.amberAccent[100]!,
+          borderSide: const BorderSide(
+            color: Color(0xFFFF965b),
           ),
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -90,8 +90,8 @@ ThemeData dark = ThemeData(
             ),
             borderRadius: BorderRadius.circular(15.0))
     ),
-    accentTextTheme: TextTheme(
-      headline1: TextStyle(color: Colors.amberAccent[100],),
+    accentTextTheme: const TextTheme(
+      headline1: TextStyle(color: Color(0xFFFF965b),),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
@@ -101,12 +101,12 @@ ThemeData dark = ThemeData(
       backgroundColor: Color(0xFF151517),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color(0xFFdbb756),
+        backgroundColor: Color(0xFFFF965b),
         elevation: 1
     ),
     bottomAppBarColor: const Color(0xFFE0B84F),
     bottomSheetTheme:
-    const BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
+    const BottomSheetThemeData(modalBackgroundColor: Color(0xFF1E1E20)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';

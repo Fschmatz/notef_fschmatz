@@ -9,6 +9,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  //https://pub.dev/packages/awesome_notifications/example
+
   @override
   Widget build(BuildContext context) {
 
@@ -24,13 +26,13 @@ class _HomeState extends State<Home> {
                       .textTheme
                       .headline6!
                       .color!
-                      .withOpacity(0.7),
+                      .withOpacity(0.8),
                 ),
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => SettingsPage(),
+                        builder: (BuildContext context) => const SettingsPage(),
                         fullscreenDialog: true,
                       ));
                 }),
