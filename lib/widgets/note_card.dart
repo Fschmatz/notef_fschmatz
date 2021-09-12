@@ -112,7 +112,9 @@ class _NoteCardState extends State<NoteCard> {
         Navigator.of(context).pop();
         Navigator.of(context).pop();
         _delete();
-        if(widget.note.pinned == 1){widget.dismissNotification(widget.note.id!);}
+        if (widget.note.pinned == 1) {
+          widget.dismissNotification(widget.note.id!);
+        }
         widget.refreshHome();
       },
     );
@@ -158,34 +160,24 @@ class _NoteCardState extends State<NoteCard> {
               ListTile(
                 contentPadding: const EdgeInsets.fromLTRB(16, 0, 5, 0),
                 title: Text(widget.note.title!,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: widget.note.pinned == 1
+                          ? Theme.of(context).accentColor
+                          : Theme.of(context).textTheme.headline6!.color,
                     )),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    widget.note.pinned == 0
-                        ? IconButton(
-                            icon: const Icon(
-                              Icons.push_pin_outlined,
-                            ),
-                            onPressed: () {
-                              _pinAndUnpinNotification();
-                              widget.refreshHome();
-                            },
-                          )
-                        : IconButton(
-                            icon: Icon(
-                              Icons.push_pin_outlined,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            onPressed: () {
-                              _pinAndUnpinNotification();
-                              widget.refreshHome();
-                            },
-                          ),
-                  ],
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.push_pin_outlined,
+                    color: widget.note.pinned == 1
+                        ? Theme.of(context).accentColor
+                        : Theme.of(context).textTheme.headline6!.color,
+                  ),
+                  onPressed: () {
+                    _pinAndUnpinNotification();
+                    widget.refreshHome();
+                  },
                 ),
               ),
               Visibility(

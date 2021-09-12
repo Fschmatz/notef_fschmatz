@@ -132,8 +132,8 @@ class _EditNoteState extends State<EditNote> {
             leading: const Icon(Icons.notes_outlined),
             title: TextField(
               minLines: 1,
-              maxLines: 12,
-              maxLength: 100,
+              maxLines: 2,
+              maxLength: 50,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               controller: customControllerTitle,
               decoration: InputDecoration(
@@ -156,7 +156,7 @@ class _EditNoteState extends State<EditNote> {
                     color: Theme.of(context).accentTextTheme.headline1!.color)),
           ),
           ListTile(
-            leading: const Icon(Icons.notes_outlined),
+            leading: const Icon(Icons.article_outlined),
             title: TextField(
               minLines: 1,
               maxLines: 12,
@@ -165,7 +165,6 @@ class _EditNoteState extends State<EditNote> {
               controller: customControllerText,
               decoration: InputDecoration(
                 focusColor: Theme.of(context).accentColor,
-                helperText: "* Required",
               ),
               style: const TextStyle(
                 fontSize: 17,
