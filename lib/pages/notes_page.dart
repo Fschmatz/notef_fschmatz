@@ -12,7 +12,7 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
-  List<Map<String, dynamic>> dayNotesList = [];
+  List<Map<String, dynamic>> notesList = [];
   final Notes = NoteDao.instance;
   bool loading = true;
 
@@ -26,7 +26,7 @@ class _NotesPageState extends State<NotesPage> {
   Future<void> getAll() async {
     var resp = await Notes.queryAllOrderPinnedState();
     setState(() {
-      dayNotesList = resp;
+      notesList = resp;
       loading = false;
     });
   }
@@ -39,7 +39,7 @@ class _NotesPageState extends State<NotesPage> {
           title: textTitle,
           notificationLayout: NotificationLayout.BigText,
           locked: true,
-          autoCancel: false,//não fecha a notif ao abrir por ela
+          autoCancel: false, //não fecha a notif ao abrir por ela
           body: textBody),
     /*  actionButtons: [
         NotificationActionButton(
@@ -72,17 +72,16 @@ class _NotesPageState extends State<NotesPage> {
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: [
                     ListView.builder(
-
                       physics: const ScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: dayNotesList.length,
+                      itemCount: notesList.length,
                       itemBuilder: (context, index) {
                         return NoteCard(
                           note: Note(
-                            dayNotesList[index]['id'],
-                            dayNotesList[index]['title'],
-                            dayNotesList[index]['text'],
-                            dayNotesList[index]['pinned'] ?? 0,
+                            notesList[index]['id'],
+                            notesList[index]['title'],
+                            notesList[index]['text'],
+                            notesList[index]['pinned'] ?? 0,
                           ),
                           refreshHome: getAll,
                           createNotification: createNotification,
@@ -96,6 +95,7 @@ class _NotesPageState extends State<NotesPage> {
                   ]),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).accentColor,
         onPressed: () {
           Navigator.push(
               context,

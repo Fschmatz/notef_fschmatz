@@ -164,14 +164,14 @@ class _NoteCardState extends State<NoteCard> {
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: widget.note.pinned == 1
-                          ? Theme.of(context).accentColor
+                          ? Theme.of(context).accentTextTheme.headline1!.color
                           : Theme.of(context).textTheme.headline6!.color,
                     )),
                 trailing: IconButton(
                   icon: Icon(
                     Icons.push_pin_outlined,
                     color: widget.note.pinned == 1
-                        ? Theme.of(context).accentColor
+                        ? Theme.of(context).accentTextTheme.headline1!.color
                         : Theme.of(context).textTheme.headline6!.color,
                   ),
                   onPressed: () {

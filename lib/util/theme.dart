@@ -3,11 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: const Color(0xFFF3F3F3),
+    primaryColor: const Color(0xFFF0F0F0),
     accentColor: Colors.orangeAccent[700],
-    scaffoldBackgroundColor: const Color(0xFFF3F3F3),
+    scaffoldBackgroundColor: const Color(0xFFF0F0F0),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFFF3F3F3),
+        color: Color(0xFFF0F0F0),
         elevation: 0,
         iconTheme: IconThemeData(
             color: Color(0xFF000000)
@@ -20,7 +20,7 @@ ThemeData light = ThemeData(
       color: Color(0xFFFFFFFF),
     ),
     dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFFF3F3F3),
+      backgroundColor: Color(0xFFF0F0F0),
     ),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding:
@@ -61,11 +61,11 @@ ThemeData light = ThemeData(
 
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF1E1E20),
-    accentColor: const Color(0xFFe68040),
-    scaffoldBackgroundColor: const Color(0xFF1E1E20),
+    primaryColor: const Color(0xFF202022),
+    accentColor: const Color(0xFFd97c41),
+    scaffoldBackgroundColor: const Color(0xFF202022),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFF1E1E20),
+        color: Color(0xFF202022),
         elevation: 0,
         titleTextStyle: TextStyle(
             fontSize: 20,
@@ -75,7 +75,7 @@ ThemeData dark = ThemeData(
       color: Color(0xFF2A2A2C),
     ),
     dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFF1E1E20),
+      backgroundColor: Color(0xFF202022),
     ),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding:
@@ -112,7 +112,7 @@ ThemeData dark = ThemeData(
         backgroundColor: Color(0xFFFF965b), elevation: 1),
     bottomAppBarColor: const Color(0xFFE0B84F),
     bottomSheetTheme:
-        const BottomSheetThemeData(modalBackgroundColor: Color(0xFF1E1E20)));
+        const BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';
