@@ -1,10 +1,10 @@
 class Changelog{
 
-  static String appVersion = "1.0.2";
+  static String appVersion = "1.0.3";
   static String appName = "Notef Fschmatz";
 
   static String changelogCurrent = '''
-1.0.2
+1.0.3
 - Technically Usable
 - Small Fixes
 ''';

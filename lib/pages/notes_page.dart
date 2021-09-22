@@ -24,7 +24,7 @@ class _NotesPageState extends State<NotesPage> {
   }
 
   Future<void> getAll() async {
-    var resp = await Notes.queryAllOrderPinnedState();
+    var resp = await Notes.queryAllRowsDesc();
     setState(() {
       notesList = resp;
       loading = false;

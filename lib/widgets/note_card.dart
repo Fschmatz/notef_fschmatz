@@ -148,7 +148,6 @@ class _NoteCardState extends State<NoteCard> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
       child: Card(
-        elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
