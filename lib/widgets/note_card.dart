@@ -185,7 +185,10 @@ class _NoteCardState extends State<NoteCard> {
                   contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
                   title: Text(
                     widget.note.text!,
-                    style: const TextStyle(fontSize: 16),
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
+                    ),
                   ),
                 ),
               ),

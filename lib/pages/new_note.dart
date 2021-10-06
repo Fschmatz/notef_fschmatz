@@ -78,7 +78,6 @@ class _NewNoteState extends State<NewNote> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("New Note"),
-          elevation: 0,
           actions: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),

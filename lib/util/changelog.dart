@@ -1,16 +1,18 @@
 class Changelog{
 
-  static String appVersion = "1.0.5";
+  static String appVersion = "1.1.0";
   static String appName = "Notef Fschmatz";
 
   static String changelogCurrent = '''
-1.0.5
-- Technically Usable
+1.1.0
 - Small Fixes
 - UI Changes
 ''';
 
   static String changelogsOld = '''
+1.0.0
+- Technically Usable
+
 0.5.0
 - UI Changes
 - Dismiss Notification Only in App

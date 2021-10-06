@@ -98,7 +98,6 @@ class _EditNoteState extends State<EditNote> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Edit Note"),
-          elevation: 0,
           actions: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),

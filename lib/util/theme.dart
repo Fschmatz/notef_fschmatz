@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 ThemeData light = ThemeData(
     brightness: Brightness.light,
     primaryColor: const Color(0xFFF0F0F0),
-    accentColor: Colors.orangeAccent[700],
+    accentColor: Colors.orangeAccent[600],
     scaffoldBackgroundColor: const Color(0xFFF0F0F0),
     appBarTheme: const AppBarTheme(
         color: Color(0xFFF0F0F0),
@@ -28,7 +28,7 @@ ThemeData light = ThemeData(
             const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.orangeAccent[700]!,
+            color: Colors.orangeAccent[600]!,
           ),
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -48,7 +48,7 @@ ThemeData light = ThemeData(
     bottomAppBarColor: const Color(0xFFF0F0F0),
     accentTextTheme: TextTheme(
       headline1: TextStyle(
-        color: Colors.orangeAccent[700],
+        color: Colors.orangeAccent[600],
       ),
       headline2: const TextStyle(
         color: Color(0xFF8a4500),
@@ -107,7 +107,7 @@ ThemeData dark = ThemeData(
         color: Color(0xFFFF965b),
       ),
       headline2: TextStyle(
-        color: Color(0xFFffbd99),
+        color: Color(0xFFffd6bf),
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -118,7 +118,7 @@ ThemeData dark = ThemeData(
       backgroundColor: Color(0xFF151517),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color(0xFFd77436),
+        backgroundColor: Color(0xFFf29961),
     ),
     bottomAppBarColor: const Color(0xFFE0B84F),
     bottomSheetTheme:
