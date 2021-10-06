@@ -3,11 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: const Color(0xFFE5E5E5),
+    primaryColor: const Color(0xFFF0F0F0),
     accentColor: Colors.orangeAccent[700],
-    scaffoldBackgroundColor: const Color(0xFFE5E5E5),
+    scaffoldBackgroundColor: const Color(0xFFF0F0F0),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFFE5E5E5),
+        color: Color(0xFFF0F0F0),
         elevation: 0,
         iconTheme: IconThemeData(
             color: Color(0xFF000000)
@@ -21,7 +21,7 @@ ThemeData light = ThemeData(
       color: Color(0xFFFFFFFF),
     ),
     dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFFE5E5E5),
+      backgroundColor: Color(0xFFF0F0F0),
     ),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding:
@@ -43,11 +43,15 @@ ThemeData light = ThemeData(
             ),
             borderRadius: BorderRadius.circular(15.0))),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color(0xFFF2F2F2) , elevation: 2),
-    bottomAppBarColor: const Color(0xFFE5E5E5),
+        backgroundColor: Color(0xFFffa470)
+    ),
+    bottomAppBarColor: const Color(0xFFF0F0F0),
     accentTextTheme: TextTheme(
       headline1: TextStyle(
         color: Colors.orangeAccent[700],
+      ),
+      headline2: const TextStyle(
+        color: Color(0xFF8a4500),
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -55,18 +59,18 @@ ThemeData light = ThemeData(
       selectedLabelStyle: TextStyle(color: Colors.deepPurple),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: Color(0xFFE5E5E5),
+      backgroundColor: Color(0xFFF0F0F0),
     ),
     bottomSheetTheme:
         const BottomSheetThemeData(modalBackgroundColor: Color(0xFFFFFFFF)));
 
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF1A1A1C),
+    primaryColor: const Color(0xFF1B1B1D),
     accentColor: const Color(0xFFd97c41),
-    scaffoldBackgroundColor: const Color(0xFF1A1A1C),
+    scaffoldBackgroundColor: const Color(0xFF1B1B1D),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFF1A1A1C),
+        color: Color(0xFF1B1B1D),
         elevation: 0,
         titleTextStyle: TextStyle(
             fontSize: 20,
@@ -74,7 +78,7 @@ ThemeData dark = ThemeData(
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
       elevation: 0,
-      color: Color(0xFF2A2A2C),
+      color: Color(0xFF2B2B2D),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF202022),
@@ -102,6 +106,9 @@ ThemeData dark = ThemeData(
       headline1: TextStyle(
         color: Color(0xFFFF965b),
       ),
+      headline2: TextStyle(
+        color: Color(0xFFffbd99),
+      ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
@@ -111,7 +118,8 @@ ThemeData dark = ThemeData(
       backgroundColor: Color(0xFF151517),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color(0xFF373739), elevation: 2),
+        backgroundColor: Color(0xFFd77436),
+    ),
     bottomAppBarColor: const Color(0xFFE0B84F),
     bottomSheetTheme:
         const BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
