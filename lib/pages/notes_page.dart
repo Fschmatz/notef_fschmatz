@@ -95,7 +95,9 @@ class _NotesPageState extends State<NotesPage> {
                   ]),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).accentColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
         onPressed: () {
           Navigator.push(
               context,
@@ -104,9 +106,9 @@ class _NotesPageState extends State<NotesPage> {
                 fullscreenDialog: true,
               )).then((value) => getAll());
         },
-        child: const Icon(
+        child: Icon(
           Icons.add,
-          color: Colors.white,
+          color: Theme.of(context).accentTextTheme.headline1!.color,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
