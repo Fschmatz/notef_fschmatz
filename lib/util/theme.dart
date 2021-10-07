@@ -118,7 +118,7 @@ ThemeData dark = ThemeData(
       backgroundColor: Color(0xFF151517),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color(0xFFe69460),
+        backgroundColor: Color(0xFF404043),
     ),
     bottomAppBarColor: const Color(0xFFE0B84F),
     bottomSheetTheme:

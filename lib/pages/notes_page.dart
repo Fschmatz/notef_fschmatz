@@ -108,7 +108,7 @@ class _NotesPageState extends State<NotesPage> {
         },
         child: Icon(
           Icons.add,
-          color: Theme.of(context).accentTextTheme.headline2!.color,
+          color: Theme.of(context).accentTextTheme.headline1!.color,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
