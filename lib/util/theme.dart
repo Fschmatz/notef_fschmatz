@@ -59,7 +59,7 @@ ThemeData light = ThemeData(
       selectedLabelStyle: TextStyle(color: Colors.deepPurple),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: Color(0xFFF0F0F0),
+      backgroundColor: Color(0xFFE5E5E5),
     ),
     bottomSheetTheme:
         const BottomSheetThemeData(modalBackgroundColor: Color(0xFFFFFFFF)));
@@ -115,7 +115,7 @@ ThemeData dark = ThemeData(
       selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: Color(0xFF151517),
+      backgroundColor: Color(0xFF404043),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color(0xFF404043),

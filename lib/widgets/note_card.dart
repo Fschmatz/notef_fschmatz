@@ -166,17 +166,33 @@ class _NoteCardState extends State<NoteCard> {
                           ? Theme.of(context).accentTextTheme.headline1!.color
                           : Theme.of(context).textTheme.headline6!.color,
                     )),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.push_pin_outlined,
-                    color: widget.note.pinned == 1
-                        ? Theme.of(context).accentTextTheme.headline1!.color
-                        : Theme.of(context).textTheme.headline6!.color,
+                trailing: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
+                  child: SizedBox(
+                    width: 55,
+                    child: TextButton(
+                      onPressed: () {
+                        _pinAndUnpinNotification();
+                        widget.refreshHome();
+                      },
+                      child: Icon(
+                        Icons.push_pin_outlined,
+                        color: widget.note.pinned == 1
+                            ? Theme.of(context).accentTextTheme.headline1!.color
+                            : Theme.of(context).textTheme.headline6!.color,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        primary: widget.note.pinned == 1
+                            ? Theme.of(context).accentColor.withOpacity(0.4)
+                            : null,
+                        onPrimary: Theme.of(context).accentColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                    ),
                   ),
-                  onPressed: () {
-                    _pinAndUnpinNotification();
-                    widget.refreshHome();
-                  },
                 ),
               ),
               Visibility(
@@ -186,8 +202,12 @@ class _NoteCardState extends State<NoteCard> {
                   title: Text(
                     widget.note.text!,
                     style: TextStyle(
-                        fontSize: 16,
-                        color: Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
+                      fontSize: 16,
+                      color: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .color!
+                          .withOpacity(0.8),
                     ),
                   ),
                 ),
