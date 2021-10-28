@@ -149,10 +149,10 @@ class _NoteCardState extends State<NoteCard> {
       padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(12),
         ),
         child: InkWell(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(12),
           onTap: openBottomMenu,
           child: Column(
             children: <Widget>[
@@ -188,7 +188,7 @@ class _NoteCardState extends State<NoteCard> {
                             : null,
                         onPrimary: Theme.of(context).accentColor,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                       ),
                     ),
