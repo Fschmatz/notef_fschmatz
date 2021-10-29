@@ -56,44 +56,46 @@ class _NoteCardState extends State<NoteCard> {
         isScrollControlled: true,
         context: context,
         builder: (BuildContext bc) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-            child: Wrap(
-              children: <Widget>[
-                ListTile(
-                  leading: Icon(Icons.edit_outlined,
-                      color: Theme.of(context).hintColor),
-                  title: const Text(
-                    "Edit note",
-                    style: TextStyle(fontSize: 16),
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              child: Wrap(
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(Icons.edit_outlined,
+                        color: Theme.of(context).hintColor),
+                    title: const Text(
+                      "Edit note",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => EditNote(
+                              noteEdit: widget.note,
+                              dismissNotification: widget.dismissNotification,
+                              createNotification: widget.createNotification,
+                            ),
+                            fullscreenDialog: true,
+                          )).then((value) => widget.refreshHome());
+                    },
                   ),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) => EditNote(
-                            noteEdit: widget.note,
-                            dismissNotification: widget.dismissNotification,
-                            createNotification: widget.createNotification,
-                          ),
-                          fullscreenDialog: true,
-                        )).then((value) => widget.refreshHome());
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  leading: Icon(Icons.delete_outline_outlined,
-                      color: Theme.of(context).hintColor),
-                  title: const Text(
-                    "Delete note",
-                    style: TextStyle(fontSize: 16),
+                  const Divider(),
+                  ListTile(
+                    leading: Icon(Icons.delete_outline_outlined,
+                        color: Theme.of(context).hintColor),
+                    title: const Text(
+                      "Delete note",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    onTap: () {
+                      showAlertDialogOkDelete(context);
+                    },
                   ),
-                  onTap: () {
-                    showAlertDialogOkDelete(context);
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
           );
         });
@@ -188,7 +190,7 @@ class _NoteCardState extends State<NoteCard> {
                             : null,
                         onPrimary: Theme.of(context).accentColor,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
+                          borderRadius: BorderRadius.circular(18.0),
                         ),
                       ),
                     ),
