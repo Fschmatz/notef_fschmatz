@@ -34,7 +34,6 @@ class _NoteCardState extends State<NoteCard> {
     } else {
       widget.dismissNotification(widget.note.id!);
     }
-
     _changeState();
   }
 

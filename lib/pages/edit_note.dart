@@ -33,20 +33,20 @@ class _EditNoteState extends State<EditNote> {
   }
 
   void _updateNote() async {
+    if (widget.noteEdit.pinned == 1) {
+      widget.dismissNotification(widget.noteEdit.id!);
+    }
     Map<String, dynamic> row = {
       NoteDao.columnId: widget.noteEdit.id,
       NoteDao.columnTitle: customControllerTitle.text,
       NoteDao.columnText: customControllerText.text,
-      NoteDao.columnPinned: widget.noteEdit.pinned
+      NoteDao.columnPinned: 1
     };
-    if(widget.noteEdit.pinned == 1){
-      widget.dismissNotification(widget.noteEdit.id!);
-      widget.createNotification(
-        widget.noteEdit.id!,
-        customControllerTitle.text,
-        customControllerText.text,
-      );
-    }
+    widget.createNotification(
+      widget.noteEdit.id!,
+      customControllerTitle.text,
+      customControllerText.text,
+    );
     final update = await dbNotes.update(row);
   }
 
