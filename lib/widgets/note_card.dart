@@ -121,7 +121,9 @@ class _NoteCardState extends State<NoteCard> {
     );
 
     AlertDialog alert = AlertDialog(
-      elevation: 3.0,
+      shape: const  RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+      ),
       title: const Text(
         "Confirm", //
         style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
@@ -189,7 +191,7 @@ class _NoteCardState extends State<NoteCard> {
                             : null,
                         onPrimary: Theme.of(context).accentColor,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                       ),
                     ),

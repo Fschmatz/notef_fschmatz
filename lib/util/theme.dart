@@ -3,25 +3,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: const Color(0xFFF0F0F0),
+    primaryColorBrightness: Brightness.dark,
+    primaryColor: const Color(0xFFFFFFFF),
     accentColor: Colors.orange[700]!,
-    scaffoldBackgroundColor: const Color(0xFFF0F0F0),
+    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFFF0F0F0),
+        color: Color(0xFFFFFFFF),
         elevation: 0,
         iconTheme: IconThemeData(
-            color: Color(0xFF000000)
+            color: Color(0xFF050505)
         ),
         titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
             color: Color(0xFF000000))),
     cardTheme: const CardTheme(
-      elevation: 0,
-      color: Color(0xFFFFFFFF),
+      color: Color(0xFFF1F0F0),
     ),
     dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFFF0F0F0),
+      backgroundColor: Color(0xFFFFFFFF),
     ),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding:
@@ -30,22 +30,22 @@ ThemeData light = ThemeData(
           borderSide: BorderSide(
             color: Colors.orange[700]!,
           ),
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(12.0),
         ),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Colors.grey.withOpacity(0.3),
             ),
-            borderRadius: BorderRadius.circular(15.0)),
+            borderRadius: BorderRadius.circular(12.0)),
         border: OutlineInputBorder(
             borderSide: BorderSide(
               color: Colors.grey.withOpacity(0.3),
             ),
-            borderRadius: BorderRadius.circular(15.0))),
+            borderRadius: BorderRadius.circular(12.0))),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color(0xFFffa470)
     ),
-    bottomAppBarColor: const Color(0xFFF0F0F0),
+    bottomAppBarColor: const Color(0xFFFFFFFF),
     accentTextTheme: TextTheme(
       headline1: TextStyle(
         color: Colors.orange[700]!,
@@ -66,12 +66,16 @@ ThemeData light = ThemeData(
 
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
+    primaryColorBrightness: Brightness.light,
     primaryColor: const Color(0xFF1B1B1D),
     accentColor: const Color(0xFFd97c41),
     scaffoldBackgroundColor: const Color(0xFF1B1B1D),
     appBarTheme: const AppBarTheme(
         color: Color(0xFF1B1B1D),
         elevation: 0,
+        iconTheme: IconThemeData(
+            color: Color(0xFFCACACA)
+        ),
         titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -90,18 +94,18 @@ ThemeData dark = ThemeData(
           borderSide: const BorderSide(
             color: Color(0xFFFF965b),
           ),
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(12.0),
         ),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Colors.grey.withOpacity(0.3),
             ),
-            borderRadius: BorderRadius.circular(15.0)),
+            borderRadius: BorderRadius.circular(12.0)),
         border: OutlineInputBorder(
             borderSide: BorderSide(
               color: Colors.grey.withOpacity(0.3),
             ),
-            borderRadius: BorderRadius.circular(15.0))),
+            borderRadius: BorderRadius.circular(12.0))),
     accentTextTheme: const TextTheme(
       headline1: TextStyle(
         color: Color(0xFFFF965b),
@@ -118,9 +122,9 @@ ThemeData dark = ThemeData(
       backgroundColor: Color(0xFF404043),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color(0xFF404043),
+        backgroundColor: Color(0xFFFF965b),
     ),
-    bottomAppBarColor: const Color(0xFFE0B84F),
+    bottomAppBarColor: const Color(0xFF1B1B1D),
     bottomSheetTheme:
         const BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
 
