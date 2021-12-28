@@ -30,7 +30,7 @@ class ChangelogPage extends StatelessWidget {
             ),
             title: Text(
               Changelog.changelogCurrent,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
           const Divider(),

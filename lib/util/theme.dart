@@ -18,7 +18,7 @@ ThemeData light = ThemeData(
             fontWeight: FontWeight.w600,
             color: Color(0xFF000000))),
     cardTheme: const CardTheme(
-      color: Color(0xFFF1F0F0),
+      color: Color(0xFFFAF9F9),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFFFFFFF),
@@ -54,12 +54,12 @@ ThemeData light = ThemeData(
         color: Color(0xFF8a4500),
       ),
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(color: Colors.deepPurple),
-      selectedLabelStyle: TextStyle(color: Colors.deepPurple),
+    bottomNavigationBarTheme:  BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(color: Colors.orange[700]!),
+      selectedLabelStyle: TextStyle(color: Colors.orange[700]!),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: Color(0xFFE5E5E5),
+      backgroundColor: const Color(0xFFE5E5E5),
     ),
     bottomSheetTheme:
         const BottomSheetThemeData(modalBackgroundColor: Color(0xFFFFFFFF)));
@@ -67,11 +67,11 @@ ThemeData light = ThemeData(
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColorBrightness: Brightness.light,
-    primaryColor: const Color(0xFF1B1B1D),
+    primaryColor: const Color(0xFF1C1C1D),
     accentColor: const Color(0xFFd97c41),
-    scaffoldBackgroundColor: const Color(0xFF1B1B1D),
+    scaffoldBackgroundColor: const Color(0xFF1C1C1D),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFF1B1B1D),
+        color: Color(0xFF1C1C1D),
         elevation: 0,
         iconTheme: IconThemeData(
             color: Color(0xFFCACACA)
@@ -82,10 +82,10 @@ ThemeData dark = ThemeData(
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
       elevation: 0,
-      color: Color(0xFF2B2B2D),
+      color: Color(0xFF2C2C2D),
     ),
     dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFF202022),
+      backgroundColor: Color(0xFF1C1C1D),
     ),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding:
@@ -115,16 +115,16 @@ ThemeData dark = ThemeData(
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
-      selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
+      selectedIconTheme: IconThemeData(color: Color(0xFFFF965b)),
+      selectedLabelStyle: TextStyle(color: Color(0xFFFF965b)),
       showSelectedLabels: false,
       showUnselectedLabels: false,
       backgroundColor: Color(0xFF404043),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color(0xFFFF965b),
+        backgroundColor: Color(0xFFfca36f),
     ),
-    bottomAppBarColor: const Color(0xFF1B1B1D),
+    bottomAppBarColor: const Color(0xFF1C1C1D),
     bottomSheetTheme:
         const BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
 
