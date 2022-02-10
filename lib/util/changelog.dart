@@ -1,15 +1,19 @@
 class Changelog{
 
-  static String appVersion = "1.1.2";
+  static String appVersion = "1.2.0";
   static String appName = "Notef Fschmatz";
 
-  static String changelogCurrent = '''
+  static String changelogCurrent = '''  
+1.2.0
+- Bug Fixes
+- Added System Theme
+''';
+
+  static String changelogsOld = '''  
 1.1.2
 - Small Fixes
 - UI Changes
-''';
 
-  static String changelogsOld = '''
 1.0.0
 - Technically Usable
 

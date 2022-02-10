@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ThemeData light = ThemeData(
+  useMaterial3: true,
     brightness: Brightness.light,
-    primaryColorBrightness: Brightness.dark,
-    primaryColor: const Color(0xFFFFFFFF),
+    primaryColor: const Color(0xFFF9F8F8),
     accentColor: Colors.orange[700]!,
-    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+    scaffoldBackgroundColor: const Color(0xFFF9F8F8),
+    colorScheme: ColorScheme.light(
+      primary:  Colors.orange[700]!,
+      secondary: Colors.orange[700]!,
+    ),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFFFFFFFF),
+        color: Color(0xFFF9F8F8),
         elevation: 0,
         iconTheme: IconThemeData(
             color: Color(0xFF050505)
@@ -18,7 +22,7 @@ ThemeData light = ThemeData(
             fontWeight: FontWeight.w600,
             color: Color(0xFF000000))),
     cardTheme: const CardTheme(
-      color: Color(0xFFFAF9F9),
+      color: Color(0xFFFFFFFF),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFFFFFFF),
@@ -45,7 +49,7 @@ ThemeData light = ThemeData(
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color(0xFFffa470)
     ),
-    bottomAppBarColor: const Color(0xFFFFFFFF),
+    bottomAppBarColor: const Color(0xFFF9F8F8),
     accentTextTheme: TextTheme(
       headline1: TextStyle(
         color: Colors.orange[700]!,
@@ -59,22 +63,26 @@ ThemeData light = ThemeData(
       selectedLabelStyle: TextStyle(color: Colors.orange[700]!),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: const Color(0xFFE5E5E5),
+      backgroundColor: const Color(0xFFF9F8F8),
     ),
     bottomSheetTheme:
-        const BottomSheetThemeData(modalBackgroundColor: Color(0xFFFFFFFF)));
+        const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF9F8F8)));
 
 ThemeData dark = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.dark,
-    primaryColorBrightness: Brightness.light,
     primaryColor: const Color(0xFF1C1C1D),
     accentColor: const Color(0xFFd97c41),
     scaffoldBackgroundColor: const Color(0xFF1C1C1D),
+    colorScheme: const ColorScheme.dark(
+      primary:  Color(0xFFd97c41),
+      secondary: Color(0xFFd97c41),
+    ),
     appBarTheme: const AppBarTheme(
         color: Color(0xFF1C1C1D),
         elevation: 0,
         iconTheme: IconThemeData(
-            color: Color(0xFFCACACA)
+            color: Color(0xFFF5F5F5)
         ),
         titleTextStyle: TextStyle(
             fontSize: 20,
@@ -119,14 +127,14 @@ ThemeData dark = ThemeData(
       selectedLabelStyle: TextStyle(color: Color(0xFFFF965b)),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: Color(0xFF404043),
+      backgroundColor: Color(0xFF1C1C1D),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color(0xFFfca36f),
     ),
     bottomAppBarColor: const Color(0xFF1C1C1D),
     bottomSheetTheme:
-        const BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
+        const BottomSheetThemeData(modalBackgroundColor: Color(0xFF1C1C1D)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';

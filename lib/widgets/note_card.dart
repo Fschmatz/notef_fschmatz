@@ -61,8 +61,7 @@ class _NoteCardState extends State<NoteCard> {
               child: Wrap(
                 children: <Widget>[
                   ListTile(
-                    leading: Icon(Icons.edit_outlined,
-                        color: Theme.of(context).hintColor),
+                    leading: Icon(Icons.edit_outlined),
                     title: const Text(
                       "Edit note",
                       style: TextStyle(fontSize: 16),
@@ -83,8 +82,7 @@ class _NoteCardState extends State<NoteCard> {
                   ),
                   const Divider(),
                   ListTile(
-                    leading: Icon(Icons.delete_outline_outlined,
-                        color: Theme.of(context).hintColor),
+                    leading: Icon(Icons.delete_outline_outlined),
                     title: const Text(
                       "Delete note",
                       style: TextStyle(fontSize: 16),
@@ -160,7 +158,7 @@ class _NoteCardState extends State<NoteCard> {
           child: Column(
             children: <Widget>[
               ListTile(
-                contentPadding: const EdgeInsets.fromLTRB(16, 0, 5, 0),
+                contentPadding: EdgeInsets.fromLTRB(16, widget.note.text!.isNotEmpty ? 8 : 0, 5, widget.note.text!.isNotEmpty ? 8 : 0),
                 title: Text(widget.note.title!,
                     style: TextStyle(
                       fontSize: 16,
@@ -169,6 +167,12 @@ class _NoteCardState extends State<NoteCard> {
                           ? Theme.of(context).accentTextTheme.headline1!.color
                           : Theme.of(context).textTheme.headline6!.color,
                     )),
+                subtitle: widget.note.text!.isNotEmpty ? Text(
+                    widget.note.text!,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ) : null,
                 trailing: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                   child: SizedBox(
@@ -198,7 +202,7 @@ class _NoteCardState extends State<NoteCard> {
                   ),
                 ),
               ),
-              Visibility(
+             /* Visibility(
                 visible: widget.note.text!.isNotEmpty,
                 child: ListTile(
                   contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
@@ -214,7 +218,7 @@ class _NoteCardState extends State<NoteCard> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
