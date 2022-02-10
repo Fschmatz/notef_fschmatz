@@ -4,15 +4,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 ThemeData light = ThemeData(
   useMaterial3: true,
     brightness: Brightness.light,
-    primaryColor: const Color(0xFFF9F8F8),
+    primaryColor: const Color(0xFFF7F6F6),
     accentColor: Colors.orange[700]!,
-    scaffoldBackgroundColor: const Color(0xFFF9F8F8),
+    scaffoldBackgroundColor: const Color(0xFFF7F6F6),
     colorScheme: ColorScheme.light(
       primary:  Colors.orange[700]!,
       secondary: Colors.orange[700]!,
     ),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFFF9F8F8),
+        color: Color(0xFFF7F6F6),
         elevation: 0,
         iconTheme: IconThemeData(
             color: Color(0xFF050505)
@@ -49,7 +49,7 @@ ThemeData light = ThemeData(
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color(0xFFffa470)
     ),
-    bottomAppBarColor: const Color(0xFFF9F8F8),
+    bottomAppBarColor: const Color(0xFFF7F6F6),
     accentTextTheme: TextTheme(
       headline1: TextStyle(
         color: Colors.orange[700]!,
@@ -63,10 +63,10 @@ ThemeData light = ThemeData(
       selectedLabelStyle: TextStyle(color: Colors.orange[700]!),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: const Color(0xFFF9F8F8),
+      backgroundColor: const Color(0xFFF7F6F6),
     ),
     bottomSheetTheme:
-        const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF9F8F8)));
+        const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF7F6F6)));
 
 ThemeData dark = ThemeData(
     useMaterial3: true,

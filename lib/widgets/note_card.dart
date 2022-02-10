@@ -61,7 +61,7 @@ class _NoteCardState extends State<NoteCard> {
               child: Wrap(
                 children: <Widget>[
                   ListTile(
-                    leading: Icon(Icons.edit_outlined),
+                    leading: const Icon(Icons.edit_outlined),
                     title: const Text(
                       "Edit note",
                       style: TextStyle(fontSize: 16),
@@ -82,7 +82,7 @@ class _NoteCardState extends State<NoteCard> {
                   ),
                   const Divider(),
                   ListTile(
-                    leading: Icon(Icons.delete_outline_outlined),
+                    leading: const Icon(Icons.delete_outline_outlined),
                     title: const Text(
                       "Delete note",
                       style: TextStyle(fontSize: 16),
@@ -158,7 +158,7 @@ class _NoteCardState extends State<NoteCard> {
           child: Column(
             children: <Widget>[
               ListTile(
-                contentPadding: EdgeInsets.fromLTRB(16, widget.note.text!.isNotEmpty ? 8 : 0, 5, widget.note.text!.isNotEmpty ? 8 : 0),
+                contentPadding: EdgeInsets.fromLTRB(16, widget.note.text!.isNotEmpty ? 5 : 0, 10, widget.note.text!.isNotEmpty ? 5 : 0),
                 title: Text(widget.note.title!,
                     style: TextStyle(
                       fontSize: 16,
