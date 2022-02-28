@@ -62,7 +62,6 @@ class _EditNoteState extends State<EditNote> {
     Widget okButton = TextButton(
       child: const Text(
         "Ok",
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
       onPressed: () {
         Navigator.of(context).pop();
@@ -73,13 +72,9 @@ class _EditNoteState extends State<EditNote> {
       elevation: 3.0,
       title: const Text(
         "Error",
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
       content: Text(
         checkProblems(),
-        style: const TextStyle(
-          fontSize: 18,
-        ),
       ),
       actions: [
         okButton,
@@ -125,7 +120,7 @@ class _EditNoteState extends State<EditNote> {
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: Theme.of(context).accentTextTheme.headline1!.color)),
+                    color: Theme.of(context).colorScheme.primary)),
           ),
           ListTile(
             leading: const Icon(Icons.notes_outlined),
@@ -134,9 +129,10 @@ class _EditNoteState extends State<EditNote> {
               maxLines: 2,
               maxLength: 50,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
+              textCapitalization: TextCapitalization.sentences,
               controller: customControllerTitle,
               decoration: InputDecoration(
-                focusColor: Theme.of(context).accentColor,
+                focusColor: Theme.of(context).colorScheme.primary,
                 helperText: "* Required",
               ),
               style: const TextStyle(
@@ -152,7 +148,7 @@ class _EditNoteState extends State<EditNote> {
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: Theme.of(context).accentTextTheme.headline1!.color)),
+                    color: Theme.of(context).colorScheme.primary)),
           ),
           ListTile(
             leading: const Icon(Icons.article_outlined),
@@ -161,9 +157,10 @@ class _EditNoteState extends State<EditNote> {
               maxLines: 12,
               maxLength: 200,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
+              textCapitalization: TextCapitalization.sentences,
               controller: customControllerText,
               decoration: InputDecoration(
-                focusColor: Theme.of(context).accentColor,
+                focusColor: Theme.of(context).colorScheme.primary,
               ),
               style: const TextStyle(
                 fontSize: 17,

@@ -5,7 +5,6 @@ ThemeData light = ThemeData(
   useMaterial3: true,
     brightness: Brightness.light,
     primaryColor: const Color(0xFFF7F6F6),
-    accentColor: Colors.orange[700]!,
     scaffoldBackgroundColor: const Color(0xFFF7F6F6),
     colorScheme: ColorScheme.light(
       primary:  Colors.orange[700]!,
@@ -15,11 +14,11 @@ ThemeData light = ThemeData(
         color: Color(0xFFF7F6F6),
         elevation: 0,
         iconTheme: IconThemeData(
-            color: Color(0xFF050505)
+            color: Color(0xFF000000)
         ),
         titleTextStyle: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
+            fontSize: 22,
+            fontWeight: FontWeight.w400,
             color: Color(0xFF000000))),
     cardTheme: const CardTheme(
       color: Color(0xFFFFFFFF),
@@ -72,21 +71,20 @@ ThemeData dark = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF1C1C1D),
-    accentColor: const Color(0xFFd97c41),
     scaffoldBackgroundColor: const Color(0xFF1C1C1D),
     colorScheme: const ColorScheme.dark(
-      primary:  Color(0xFFd97c41),
+      primary:  Color(0xFFFF965b),
       secondary: Color(0xFFd97c41),
     ),
     appBarTheme: const AppBarTheme(
         color: Color(0xFF1C1C1D),
         elevation: 0,
         iconTheme: IconThemeData(
-            color: Color(0xFFF5F5F5)
+            color: Color(0xFFFFFFFF)
         ),
         titleTextStyle: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
+            fontSize: 22,
+            fontWeight: FontWeight.w400,
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
       elevation: 0,

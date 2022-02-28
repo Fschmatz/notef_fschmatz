@@ -100,12 +100,8 @@ class _NoteCardState extends State<NoteCard> {
 
   showAlertDialogOkDelete(BuildContext context) {
     Widget okButton = TextButton(
-      child: Text(
+      child: const Text(
         "Yes",
-        style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).accentColor),
       ),
       onPressed: () {
         Navigator.of(context).pop();
@@ -123,14 +119,10 @@ class _NoteCardState extends State<NoteCard> {
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       title: const Text(
-        "Confirm", //
-        style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+        "Confirm",
       ),
       content: const Text(
-        "\nDelete ?",
-        style: TextStyle(
-          fontSize: 18,
-        ),
+        "Delete ?",
       ),
       actions: [
         okButton,
@@ -164,7 +156,7 @@ class _NoteCardState extends State<NoteCard> {
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: widget.note.pinned == 1
-                          ? Theme.of(context).accentTextTheme.headline1!.color
+                          ? Theme.of(context).colorScheme.primary
                           : Theme.of(context).textTheme.headline6!.color,
                     )),
                 subtitle: widget.note.text!.isNotEmpty ? Text(
@@ -185,15 +177,15 @@ class _NoteCardState extends State<NoteCard> {
                       child: Icon(
                         Icons.push_pin_outlined,
                         color: widget.note.pinned == 1
-                            ? Theme.of(context).accentTextTheme.headline1!.color
+                            ? Theme.of(context).colorScheme.primary
                             : Theme.of(context).textTheme.headline6!.color,
                       ),
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         primary: widget.note.pinned == 1
-                            ? Theme.of(context).accentColor.withOpacity(0.4)
+                            ? Theme.of(context).colorScheme.primary.withOpacity(0.4)
                             : null,
-                        onPrimary: Theme.of(context).accentColor,
+                        onPrimary: Theme.of(context).colorScheme.primary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0),
                         ),
@@ -202,23 +194,6 @@ class _NoteCardState extends State<NoteCard> {
                   ),
                 ),
               ),
-             /* Visibility(
-                visible: widget.note.text!.isNotEmpty,
-                child: ListTile(
-                  contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
-                  title: Text(
-                    widget.note.text!,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .color!
-                          .withOpacity(0.8),
-                    ),
-                  ),
-                ),
-              ),*/
             ],
           ),
         ),

@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
 
-    Color? themeColorApp =Theme.of(context).accentTextTheme.headline1!.color;
+    Color? themeColorApp =Theme.of(context).colorScheme.primary;
 
     return Scaffold(
         appBar: AppBar(
@@ -104,9 +104,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       fullscreenDialog: true,
                     ));
               },
-            ),
-            const SizedBox(
-              height: 10.0,
             ),
             ListTile(
               leading: const Icon(

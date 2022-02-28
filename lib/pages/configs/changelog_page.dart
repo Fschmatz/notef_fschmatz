@@ -8,7 +8,7 @@ class ChangelogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Color? themeColorApp =Theme.of(context).accentTextTheme.headline1!.color;
+    Color? themeColorApp = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
         appBar: AppBar(
