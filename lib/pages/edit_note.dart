@@ -69,7 +69,6 @@ class _EditNoteState extends State<EditNote> {
     );
 
     AlertDialog alert = AlertDialog(
-      elevation: 3.0,
       title: const Text(
         "Error",
       ),
@@ -94,36 +93,29 @@ class _EditNoteState extends State<EditNote> {
         appBar: AppBar(
           title: const Text("Edit Note"),
           actions: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-              child: IconButton(
-                icon: const Icon(Icons.save_outlined),
-                tooltip: 'Save',
-                onPressed: () {
-                  if (checkProblems().isEmpty) {
-                    _updateNote();
-                    Navigator.of(context).pop();
-                  } else {
-                    showAlertDialogErrors(context);
-                  }
-                },
-              ),
+            IconButton(
+              icon: const Icon(Icons.save_outlined),
+              tooltip: 'Save',
+              onPressed: () {
+                if (checkProblems().isEmpty) {
+                  _updateNote();
+                  Navigator.of(context).pop();
+                } else {
+                  showAlertDialogErrors(context);
+                }
+              },
             ),
           ],
         ),
         body: ListView(children: [
           ListTile(
-            leading: const SizedBox(
-              height: 0.1,
-            ),
-            title: Text("Title".toUpperCase(),
+            title: Text("Title",
                 style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: Theme.of(context).colorScheme.primary)),
           ),
           ListTile(
-            leading: const Icon(Icons.notes_outlined),
             title: TextField(
               minLines: 1,
               maxLines: 2,
@@ -134,36 +126,32 @@ class _EditNoteState extends State<EditNote> {
               decoration: InputDecoration(
                 focusColor: Theme.of(context).colorScheme.primary,
                 helperText: "* Required",
-              ),
-              style: const TextStyle(
-                fontSize: 17,
+                prefixIcon: const Icon(
+                  Icons.notes_outlined,
+                ),
               ),
             ),
           ),
           ListTile(
-            leading: const SizedBox(
-              height: 0.1,
-            ),
-            title: Text("Note".toUpperCase(),
+            title: Text("Note",
                 style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: Theme.of(context).colorScheme.primary)),
           ),
           ListTile(
-            leading: const Icon(Icons.article_outlined),
             title: TextField(
               minLines: 1,
-              maxLines: 12,
+              maxLines: 5,
               maxLength: 200,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               textCapitalization: TextCapitalization.sentences,
               controller: customControllerText,
               decoration: InputDecoration(
                 focusColor: Theme.of(context).colorScheme.primary,
-              ),
-              style: const TextStyle(
-                fontSize: 17,
+                prefixIcon: const Icon(
+                  Icons.article_outlined,
+                ),
               ),
             ),
           ),

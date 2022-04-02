@@ -1,6 +1,6 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:notef_fschmatz/util/changelog.dart';
+import 'package:notef_fschmatz/util/app_details.dart';
 import 'package:notef_fschmatz/util/theme.dart';
 import '../../util/dialog_select_theme.dart';
 import 'app_info_page.dart';
@@ -14,7 +14,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-
   String getThemeStringFormatted() {
     String theme = EasyDynamicTheme.of(context)
         .themeMode
@@ -28,8 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    Color? themeColorApp =Theme.of(context).colorScheme.primary;
+    Color? themeColorApp = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
         appBar: AppBar(
@@ -40,27 +38,26 @@ class _SettingsPageState extends State<SettingsPage> {
             Card(
               margin: const EdgeInsets.fromLTRB(16, 20, 16, 25),
               color: themeColorApp,
-              shape: const  RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
               child: ListTile(
                 title: Text(
-                  Changelog.appName + " " + Changelog.appVersion,
+                  AppDetails.appName + " " + AppDetails.appVersion,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 17.5),
+                  style: TextStyle(
+                    fontSize: 17.5,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
               ),
             ),
-            const Divider(),
             ListTile(
-              leading: const SizedBox(height: 0.1,),
-              title:    Text(
-                  "General".toUpperCase(),
+              title: Text("General",
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: themeColorApp)
-              ),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: themeColorApp)),
             ),
             ListTile(
               onTap: () => showDialog(
@@ -71,22 +68,19 @@ class _SettingsPageState extends State<SettingsPage> {
               leading: const Icon(Icons.brightness_6_outlined),
               title: const Text(
                 "App Theme",
-                style: TextStyle(fontSize: 16),
               ),
               subtitle: Text(
                 getThemeStringFormatted(),
               ),
             ),
-            const Divider(),
+
             ListTile(
-              leading: const SizedBox(height: 0.1,),
-              title: Text(
-                  "About".toUpperCase(),
+
+              title: Text("About",
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: themeColorApp)
-              ),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: themeColorApp)),
             ),
             ListTile(
               leading: const Icon(
@@ -94,7 +88,6 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               title: const Text(
                 "App Info",
-                style: TextStyle(fontSize: 16),
               ),
               onTap: () {
                 Navigator.push(
@@ -111,7 +104,6 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               title: const Text(
                 "Changelog",
-                style: TextStyle(fontSize: 16),
               ),
               onTap: () {
                 Navigator.push(

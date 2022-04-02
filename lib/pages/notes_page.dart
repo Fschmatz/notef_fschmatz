@@ -106,9 +106,9 @@ class _NotesPageState extends State<NotesPage> {
                 fullscreenDialog: true,
               )).then((value) => getAll());
         },
-        child: const Icon(
+        child: Icon(
           Icons.add,
-          color: Colors.black87,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

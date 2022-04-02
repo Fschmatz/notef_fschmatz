@@ -7,8 +7,9 @@ ThemeData light = ThemeData(
     primaryColor: const Color(0xFFF7F6F6),
     scaffoldBackgroundColor: const Color(0xFFF7F6F6),
     colorScheme: ColorScheme.light(
-      primary:  Colors.orange[700]!,
-      secondary: Colors.orange[700]!,
+      primary:  Colors.orange.shade700,
+      onPrimary:  const Color(0xFFFFFFFF),
+      secondary: Colors.orange.shade700,
     ),
     appBarTheme: const AppBarTheme(
         color: Color(0xFFF7F6F6),
@@ -25,13 +26,16 @@ ThemeData light = ThemeData(
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFFFFFFF),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+      ),
     ),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.orange[700]!,
+            color: Colors.orange.shade700,
           ),
           borderRadius: BorderRadius.circular(12.0),
         ),
@@ -51,15 +55,15 @@ ThemeData light = ThemeData(
     bottomAppBarColor: const Color(0xFFF7F6F6),
     accentTextTheme: TextTheme(
       headline1: TextStyle(
-        color: Colors.orange[700]!,
+        color: Colors.orange.shade700,
       ),
       headline2: const TextStyle(
         color: Color(0xFF8a4500),
       ),
     ),
     bottomNavigationBarTheme:  BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(color: Colors.orange[700]!),
-      selectedLabelStyle: TextStyle(color: Colors.orange[700]!),
+      selectedIconTheme: IconThemeData(color: Colors.orange.shade700),
+      selectedLabelStyle: TextStyle(color: Colors.orange.shade700),
       showSelectedLabels: false,
       showUnselectedLabels: false,
       backgroundColor: const Color(0xFFF7F6F6),
@@ -74,6 +78,7 @@ ThemeData dark = ThemeData(
     scaffoldBackgroundColor: const Color(0xFF1C1C1D),
     colorScheme: const ColorScheme.dark(
       primary:  Color(0xFFFF965b),
+      onPrimary:  Color(0xFF542100),
       secondary: Color(0xFFd97c41),
     ),
     appBarTheme: const AppBarTheme(
@@ -91,7 +96,10 @@ ThemeData dark = ThemeData(
       color: Color(0xFF2C2C2D),
     ),
     dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFF1C1C1D),
+      backgroundColor: Color(0xFF2C2C2D),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+      ),
     ),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding:

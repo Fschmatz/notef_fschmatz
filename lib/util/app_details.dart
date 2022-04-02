@@ -1,15 +1,20 @@
-class Changelog{
+class AppDetails{
 
-  static String appVersion = "1.2.1";
+  static String appVersion = "1.3.0";
   static String appName = "Notef Fschmatz";
+  static String repositoryLink = "https://github.com/Fschmatz/notef_fschmatz";
 
   static String changelogCurrent = '''  
+1.3.0
+- Small Fixes
+- UI Changes
+''';
+
+  static String changelogsOld = ''' 
 1.2.1
 - Bug Fixes
 - Added System Theme
-''';
-
-  static String changelogsOld = '''  
+ 
 1.1.2
 - Small Fixes
 - UI Changes
