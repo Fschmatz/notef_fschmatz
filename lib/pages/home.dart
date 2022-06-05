@@ -25,15 +25,13 @@ class _HomeState extends State<Home> {
                 onPressed: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute<void>(
+                      MaterialPageRoute(
                         builder: (BuildContext context) => const SettingsPage(),
-                        fullscreenDialog: true,
                       ));
                 }),
           ],
         ),
         body: NotesPage(),
-
     );
   }
 }

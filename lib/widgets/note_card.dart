@@ -50,9 +50,8 @@ class _NoteCardState extends State<NoteCard> {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25.0), topRight: Radius.circular(25.0)),
+              topLeft: Radius.circular(16.0), topRight: Radius.circular(25.0)),
         ),
-        isScrollControlled: true,
         context: context,
         builder: (BuildContext bc) {
           return SafeArea(
@@ -64,19 +63,17 @@ class _NoteCardState extends State<NoteCard> {
                     leading: const Icon(Icons.edit_outlined),
                     title: const Text(
                       "Edit note",
-                      style: TextStyle(fontSize: 16),
                     ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.push(
                           context,
-                          MaterialPageRoute<void>(
+                          MaterialPageRoute(
                             builder: (BuildContext context) => EditNote(
                               noteEdit: widget.note,
                               dismissNotification: widget.dismissNotification,
                               createNotification: widget.createNotification,
                             ),
-                            fullscreenDialog: true,
                           )).then((value) => widget.refreshHome());
                     },
                   ),
@@ -85,7 +82,6 @@ class _NoteCardState extends State<NoteCard> {
                     leading: const Icon(Icons.delete_outline_outlined),
                     title: const Text(
                       "Delete note",
-                      style: TextStyle(fontSize: 16),
                     ),
                     onTap: () {
                       showAlertDialogOkDelete(context);
@@ -113,11 +109,7 @@ class _NoteCardState extends State<NoteCard> {
         widget.refreshHome();
       },
     );
-
     AlertDialog alert = AlertDialog(
-      shape: const  RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
       title: const Text(
         "Confirm",
       ),
@@ -141,9 +133,6 @@ class _NoteCardState extends State<NoteCard> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: openBottomMenu,
@@ -154,7 +143,7 @@ class _NoteCardState extends State<NoteCard> {
                 title: Text(widget.note.title!,
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       color: widget.note.pinned == 1
                           ? Theme.of(context).colorScheme.primary
                           : Theme.of(context).textTheme.headline6!.color,
@@ -162,34 +151,29 @@ class _NoteCardState extends State<NoteCard> {
                 subtitle: widget.note.text!.isNotEmpty ? Text(
                     widget.note.text!,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ) : null,
-                trailing: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
-                  child: SizedBox(
-                    width: 55,
-                    child: TextButton(
-                      onPressed: () {
-                        _pinAndUnpinNotification();
-                        widget.refreshHome();
-                      },
-                      child: Icon(
-                        Icons.push_pin_outlined,
-                        color: widget.note.pinned == 1
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).textTheme.headline6!.color,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        primary: widget.note.pinned == 1
-                            ? Theme.of(context).colorScheme.primary.withOpacity(0.4)
-                            : null,
-                        onPrimary: Theme.of(context).colorScheme.primary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
+                trailing: SizedBox(
+                  width: 60,
+                  child: TextButton(
+                    onPressed: () {
+                      _pinAndUnpinNotification();
+                      widget.refreshHome();
+                    },
+                    child: Icon(
+                      Icons.push_pin_outlined,
+                      color: widget.note.pinned == 1
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).textTheme.headline6!.color,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      primary: widget.note.pinned == 1
+                          ? Theme.of(context).colorScheme.primary.withOpacity(0.4)
+                          : null,
+                      onPrimary: Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
+                      shape: const StadiumBorder()
                     ),
                   ),
                 ),

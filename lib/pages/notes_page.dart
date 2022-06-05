@@ -95,23 +95,17 @@ class _NotesPageState extends State<NotesPage> {
                   ]),
       ),
       floatingActionButton: FloatingActionButton(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
-        ),
         onPressed: () {
           Navigator.push(
               context,
-              MaterialPageRoute<void>(
+              MaterialPageRoute(
                 builder: (BuildContext context) => NewNote(createNotification: createNotification,),
-                fullscreenDialog: true,
               )).then((value) => getAll());
         },
         child: Icon(
           Icons.add,
           color: Theme.of(context).colorScheme.onPrimary,
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-    );
+      ),);
   }
 }

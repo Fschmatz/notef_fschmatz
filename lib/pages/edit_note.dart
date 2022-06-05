@@ -22,14 +22,15 @@ class EditNote extends StatefulWidget {
 
 class _EditNoteState extends State<EditNote> {
   final dbNotes = NoteDao.instance;
-  TextEditingController customControllerTitle = TextEditingController();
-  TextEditingController customControllerText = TextEditingController();
+  TextEditingController controllerTitle = TextEditingController();
+  TextEditingController controllerNote = TextEditingController();
+  bool _validTitle = true;
 
   @override
   void initState() {
     super.initState();
-    customControllerTitle.text = widget.noteEdit.title!;
-    customControllerText.text = widget.noteEdit.text!;
+    controllerTitle.text = widget.noteEdit.title!;
+    controllerNote.text = widget.noteEdit.text!;
   }
 
   void _updateNote() async {
@@ -38,53 +39,25 @@ class _EditNoteState extends State<EditNote> {
     }
     Map<String, dynamic> row = {
       NoteDao.columnId: widget.noteEdit.id,
-      NoteDao.columnTitle: customControllerTitle.text,
-      NoteDao.columnText: customControllerText.text,
+      NoteDao.columnTitle: controllerTitle.text,
+      NoteDao.columnText: controllerNote.text,
       NoteDao.columnPinned: 1
     };
     widget.createNotification(
       widget.noteEdit.id!,
-      customControllerTitle.text,
-      customControllerText.text,
+      controllerTitle.text,
+      controllerNote.text,
     );
     final update = await dbNotes.update(row);
   }
 
-  String checkProblems() {
+  bool validateTextFields() {
     String errors = "";
-    if (customControllerTitle.text.isEmpty) {
-      errors += "Note is empty\n";
+    if (controllerTitle.text.isEmpty) {
+      errors += "Title";
+      _validTitle = false;
     }
-    return errors;
-  }
-
-  showAlertDialogErrors(BuildContext context) {
-    Widget okButton = TextButton(
-      child: const Text(
-        "Ok",
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
-    AlertDialog alert = AlertDialog(
-      title: const Text(
-        "Error",
-      ),
-      content: Text(
-        checkProblems(),
-      ),
-      actions: [
-        okButton,
-      ],
-    );
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+    return errors.isEmpty ? true : false;
   }
 
   @override
@@ -97,63 +70,48 @@ class _EditNoteState extends State<EditNote> {
               icon: const Icon(Icons.save_outlined),
               tooltip: 'Save',
               onPressed: () {
-                if (checkProblems().isEmpty) {
+                if (validateTextFields()) {
                   _updateNote();
                   Navigator.of(context).pop();
                 } else {
-                  showAlertDialogErrors(context);
+                  setState(() {
+                    _validTitle;
+                  });
                 }
               },
             ),
           ],
         ),
         body: ListView(children: [
-          ListTile(
-            title: Text("Title",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).colorScheme.primary)),
-          ),
-          ListTile(
-            title: TextField(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: TextField(
               minLines: 1,
               maxLines: 2,
               maxLength: 50,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               textCapitalization: TextCapitalization.sentences,
-              controller: customControllerTitle,
+              controller: controllerTitle,
               decoration: InputDecoration(
-                focusColor: Theme.of(context).colorScheme.primary,
-                helperText: "* Required",
-                prefixIcon: const Icon(
-                  Icons.notes_outlined,
-                ),
-              ),
+                  labelText: "Title",
+                  helperText: "* Required",
+                  counterText: "",
+                  errorText: (_validTitle) ? null : "Title is empty"),
             ),
           ),
-          ListTile(
-            title: Text("Note",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).colorScheme.primary)),
-          ),
-          ListTile(
-            title: TextField(
-              minLines: 1,
-              maxLines: 5,
-              maxLength: 200,
-              maxLengthEnforcement: MaxLengthEnforcement.enforced,
-              textCapitalization: TextCapitalization.sentences,
-              controller: customControllerText,
-              decoration: InputDecoration(
-                focusColor: Theme.of(context).colorScheme.primary,
-                prefixIcon: const Icon(
-                  Icons.article_outlined,
-                ),
-              ),
-            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: TextField(
+                minLines: 1,
+                maxLines: 3,
+                maxLength: 200,
+                maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                textCapitalization: TextCapitalization.sentences,
+                controller: controllerNote,
+                decoration: const InputDecoration(
+                  labelText: "Note",
+                  counterText: "",
+                )),
           ),
         ]));
   }
