@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notef_fschmatz/pages/notes_page.dart';
+import 'package:notef_fschmatz/pages/notes_list.dart';
 import 'configs/settings_page.dart';
 
 class Home extends StatefulWidget {
@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
                 }),
           ],
         ),
-        body: NotesPage(),
+        body: NotesList(),
     );
   }
 }

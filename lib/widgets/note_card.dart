@@ -60,9 +60,16 @@ class _NoteCardState extends State<NoteCard> {
               child: Wrap(
                 children: <Widget>[
                   ListTile(
+                    title: Text(
+                      widget.note.title!,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const Divider(),
+                  ListTile(
                     leading: const Icon(Icons.edit_outlined),
                     title: const Text(
-                      "Edit note",
+                      "Edit",
                     ),
                     onTap: () {
                       Navigator.of(context).pop();
@@ -77,11 +84,10 @@ class _NoteCardState extends State<NoteCard> {
                           )).then((value) => widget.refreshHome());
                     },
                   ),
-                  const Divider(),
                   ListTile(
                     leading: const Icon(Icons.delete_outline_outlined),
                     title: const Text(
-                      "Delete note",
+                      "Delete",
                     ),
                     onTap: () {
                       showAlertDialogOkDelete(context);
@@ -95,35 +101,33 @@ class _NoteCardState extends State<NoteCard> {
   }
 
   showAlertDialogOkDelete(BuildContext context) {
-    Widget okButton = TextButton(
-      child: const Text(
-        "Yes",
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-        Navigator.of(context).pop();
-        _delete();
-        if (widget.note.pinned == 1) {
-          widget.dismissNotification(widget.note.id!);
-        }
-        widget.refreshHome();
-      },
-    );
-    AlertDialog alert = AlertDialog(
-      title: const Text(
-        "Confirm",
-      ),
-      content: const Text(
-        "Delete ?",
-      ),
-      actions: [
-        okButton,
-      ],
-    );
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return alert;
+        return AlertDialog(
+          title: const Text(
+            "Confirm",
+          ),
+          content: const Text(
+            "Delete ?",
+          ),
+          actions: [
+            TextButton(
+              child: const Text(
+                "Yes",
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                _delete();
+                if (widget.note.pinned == 1) {
+                  widget.dismissNotification(widget.note.id!);
+                }
+                widget.refreshHome();
+              },
+            )
+          ],
+        );
       },
     );
   }
@@ -131,7 +135,7 @@ class _NoteCardState extends State<NoteCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
       child: Card(
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
@@ -139,21 +143,22 @@ class _NoteCardState extends State<NoteCard> {
           child: Column(
             children: <Widget>[
               ListTile(
-                contentPadding: EdgeInsets.fromLTRB(16, widget.note.text!.isNotEmpty ? 5 : 0, 10, widget.note.text!.isNotEmpty ? 5 : 0),
-                title: Text(widget.note.title!,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: widget.note.pinned == 1
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).textTheme.headline6!.color,
-                    )),
-                subtitle: widget.note.text!.isNotEmpty ? Text(
-                    widget.note.text!,
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ) : null,
+                contentPadding: EdgeInsets.fromLTRB(
+                    16,
+                    widget.note.text!.isNotEmpty ? 5 : 0,
+                    10,
+                    widget.note.text!.isNotEmpty ? 5 : 0),
+                title: Text(
+                  widget.note.title!,
+                ),
+                subtitle: widget.note.text!.isNotEmpty
+                    ? Text(
+                        widget.note.text!,
+                        style: const TextStyle(
+                          fontSize: 14,
+                        ),
+                      )
+                    : null,
                 trailing: SizedBox(
                   width: 60,
                   child: TextButton(
@@ -168,13 +173,19 @@ class _NoteCardState extends State<NoteCard> {
                           : Theme.of(context).textTheme.headline6!.color,
                     ),
                     style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: widget.note.pinned == 1
-                          ? Theme.of(context).colorScheme.primary.withOpacity(0.4)
-                          : null,
-                      onPrimary: Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
-                      shape: const StadiumBorder()
-                    ),
+                        elevation: 0,
+                        primary: widget.note.pinned == 1
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.4)
+                            : null,
+                        onPrimary: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .color!
+                            .withOpacity(0.8),
+                        shape: const StadiumBorder()),
                   ),
                 ),
               ),

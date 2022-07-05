@@ -32,12 +32,11 @@ class _NewNoteState extends State<NewNote> {
   }
 
   bool validateTextFields() {
-    String errors = "";
     if (controllerTitle.text.isEmpty) {
-      errors += "Title";
       _validTitle = false;
+      return false;
     }
-    return errors.isEmpty ? true : false;
+    return true;
   }
 
   @override

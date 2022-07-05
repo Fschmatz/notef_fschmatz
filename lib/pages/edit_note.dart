@@ -52,12 +52,11 @@ class _EditNoteState extends State<EditNote> {
   }
 
   bool validateTextFields() {
-    String errors = "";
     if (controllerTitle.text.isEmpty) {
-      errors += "Title";
       _validTitle = false;
+      return false;
     }
-    return errors.isEmpty ? true : false;
+    return true;
   }
 
   @override
