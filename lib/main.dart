@@ -7,7 +7,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   AwesomeNotifications().initialize(
-      'resource://drawable/pin_png',
+      'resource://drawable/res_pin_png',
       [
         NotificationChannel(
             channelKey: 'basic_channel',
