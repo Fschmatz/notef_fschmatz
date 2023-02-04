@@ -20,13 +20,13 @@ class _NotesListState extends State<NotesList> {
   void initState() {
     super.initState();
     getAll();
-    // _receiveActionDone();
   }
 
   Future<void> getAll() async {
     var resp = await Notes.queryAllRowsDesc();
+    notesList = resp;
+
     setState(() {
-      notesList = resp;
       loading = false;
     });
   }

@@ -154,8 +154,9 @@ class _NoteCardState extends State<NoteCard> {
                 subtitle: widget.note.text!.isNotEmpty
                     ? Text(
                         widget.note.text!,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
+                          color: Theme.of(context).hintColor
                         ),
                       )
                     : null,

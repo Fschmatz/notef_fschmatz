@@ -64,7 +64,7 @@ class _EditNoteState extends State<EditNote> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Edit Note"),
-          actions: [
+         /* actions: [
             IconButton(
               icon: const Icon(Icons.save_outlined),
               tooltip: 'Save',
@@ -79,7 +79,7 @@ class _EditNoteState extends State<EditNote> {
                 }
               },
             ),
-          ],
+          ],*/
         ),
         body: ListView(children: [
           Padding(
@@ -112,6 +112,23 @@ class _EditNoteState extends State<EditNote> {
                   counterText: "",
                 )),
           ),
-        ]));
+        ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (validateTextFields()) {
+            _updateNote();
+            Navigator.of(context).pop();
+          } else {
+            setState(() {
+              _validTitle;
+            });
+          }
+        },
+        child: Icon(
+          Icons.save_outlined,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+      ),
+    );
   }
 }
