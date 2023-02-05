@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notef_fschmatz/classes/note.dart';
 import 'package:notef_fschmatz/db/note_dao.dart';
-import 'package:notef_fschmatz/pages/edit_note.dart';
+import 'package:notef_fschmatz/widgets/dialog_edit_note.dart';
 
 class NoteCard extends StatefulWidget {
   @override
@@ -71,18 +71,16 @@ class _NoteCardState extends State<NoteCard> {
                     title: const Text(
                       "Edit",
                     ),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => EditNote(
-                              noteEdit: widget.note,
-                              dismissNotification: widget.dismissNotification,
-                              createNotification: widget.createNotification,
-                            ),
-                          )).then((value) => widget.refreshHome());
-                    },
+                    onTap: ()
+                       => showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return DialogEditNote(
+                            noteEdit: widget.note,
+                            createNotification:  widget.createNotification,
+                            dismissNotification: widget.dismissNotification,
+                        );
+                      }).then((_) => widget.refreshHome()),
                   ),
                   ListTile(
                     leading: const Icon(Icons.delete_outline_outlined),

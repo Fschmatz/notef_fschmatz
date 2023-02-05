@@ -38,12 +38,12 @@ ThemeData light = ThemeData(
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.grey.withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.8),
           ),
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.grey.withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.8),
           ),
         )),
     dividerTheme: const DividerThemeData(color:  Color(0xFFB2B2B2)),
@@ -98,12 +98,12 @@ ThemeData dark = ThemeData(
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.grey.withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.8),
           ),
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.grey.withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.8),
           ),
         )),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

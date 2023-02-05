@@ -1,7 +1,7 @@
 name: notef_fschmatz
 description: Flutter project.
 publish_to: 'none'
-version: 1.4.0
+version: 1.4.1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

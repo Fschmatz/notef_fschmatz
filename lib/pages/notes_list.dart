@@ -3,7 +3,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:notef_fschmatz/classes/note.dart';
 import 'package:notef_fschmatz/db/note_dao.dart';
-import 'package:notef_fschmatz/pages/new_note.dart';
+import 'package:notef_fschmatz/widgets/dialog_new_note.dart';
 import 'package:notef_fschmatz/widgets/note_card.dart';
 
 class NotesList extends StatefulWidget {
@@ -88,15 +88,11 @@ class _NotesListState extends State<NotesList> {
                       ]),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => NewNote(
-                  createNotification: createNotification,
-                ),
-              )).then((value) => getAll());
-        },
+        onPressed: () => showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return DialogNewNote(createNotification: createNotification);
+            }).then((_) => getAll()),
         child: Icon(
           Icons.add,
           color: Theme.of(context).colorScheme.onPrimary,
