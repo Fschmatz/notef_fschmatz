@@ -66,29 +66,29 @@ ThemeData dark = ThemeData(
     ),
     listTileTheme: const ListTileThemeData(iconColor: Color(0xFFE2E2E9)),
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF1B1B1D),
-    scaffoldBackgroundColor: const Color(0xFF1B1B1D),
+    primaryColor: const Color(0xFF1C1A19),
+    scaffoldBackgroundColor: const Color(0xFF1C1A19),
     colorScheme: const ColorScheme.dark(
       primary: Color(0xFFFF965b),
       onPrimary: Color(0xFF542100),
       secondary: Color(0xFFd97c41),
     ),
     appBarTheme: const AppBarTheme(
-      color: Color(0xFF1B1B1D),
-      surfaceTintColor: Color(0xFF1B1B1D),
+      color: Color(0xFF1C1A19),
+      surfaceTintColor: Color(0xFF1C1A19),
     ),
     bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: Color(0xFF1B1B1D),
-      surfaceTintColor: Color(0xFF1B1B1D),
+      backgroundColor: Color(0xFF1C1A19),
+      surfaceTintColor: Color(0xFF1C1A19),
     ),
     cardTheme: const CardTheme(
       elevation: 0,
-      color: Color(0xFF2C2C2D),
-      surfaceTintColor: Color(0xFF2C2C2D),
+      color: Color(0xFF2C2A29),
+      surfaceTintColor: Color(0xFF2C2A29),
     ),
     dialogTheme: const DialogTheme(
-      surfaceTintColor:  Color(0xFF2C2C2D),
-      backgroundColor: Color(0xFF2C2C2D),
+      surfaceTintColor:  Color(0xFF2C2A29),
+      backgroundColor: Color(0xFF2C2A29),
     ),
     inputDecorationTheme: InputDecorationTheme(
         focusedBorder: const OutlineInputBorder(
@@ -111,11 +111,11 @@ ThemeData dark = ThemeData(
       selectedLabelStyle: TextStyle(color: Color(0xFFFF965b)),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: Color(0xFF1B1B1D),
+      backgroundColor: Color(0xFF1C1A19),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Color(0xFFfca36f),
     ),
     dividerTheme: const DividerThemeData(color:  Color(0xFF424242)),
-    bottomAppBarColor: const Color(0xFF1B1B1D),
+    bottomAppBarColor: const Color(0xFF1C1A19),
 );
