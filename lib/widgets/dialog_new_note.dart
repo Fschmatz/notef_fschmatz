@@ -22,6 +22,7 @@ class _DialogNewNoteState extends State<DialogNewNote> {
   void _saveNote() async {
     Map<String, dynamic> row = {NoteDao.columnTitle: controllerTitle.text, NoteDao.columnText: controllerNote.text, NoteDao.columnPinned: 1};
     final id = await dbNotes.insert(row);
+
     widget.createNotification(
       id,
       controllerTitle.text,

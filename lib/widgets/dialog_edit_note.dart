@@ -48,7 +48,7 @@ class _DialogEditNoteState extends State<DialogEditNote> {
       controllerTitle.text,
       controllerNote.text,
     );
-    final update = await dbNotes.update(row);
+    await dbNotes.update(row);
   }
 
   bool validateTextFields() {
@@ -82,6 +82,7 @@ class _DialogEditNoteState extends State<DialogEditNote> {
                       labelText: "Title",
                       helperText: "* Required",
                       counterText: "",
+                      border: const OutlineInputBorder(),
                       errorText: (_validTitle) ? null : "Title is empty"),
                 ),
               ),
@@ -97,6 +98,7 @@ class _DialogEditNoteState extends State<DialogEditNote> {
                     decoration: const InputDecoration(
                       labelText: "Note",
                       counterText: "",
+                      border: OutlineInputBorder(),
                     )),
               ),
             ],
