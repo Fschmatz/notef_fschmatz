@@ -1,7 +1,7 @@
 name: notef_fschmatz
 description: Flutter project.
 publish_to: 'none'
-version: 1.4.2
+version: 1.5.0
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -18,6 +18,7 @@ dependencies:
   easy_dynamic_theme:
   cupertino_icons: ^1.0.2
   flutter_slidable: ^3.0.0
+  dynamic_color: ^1.6.9
 
 dev_dependencies:
   flutter_test:

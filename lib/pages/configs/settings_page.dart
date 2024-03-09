@@ -1,7 +1,6 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:notef_fschmatz/util/app_details.dart';
-import 'package:notef_fschmatz/util/theme.dart';
 import '../../util/dialog_select_theme.dart';
 import 'app_info_page.dart';
 import 'changelog_page.dart';

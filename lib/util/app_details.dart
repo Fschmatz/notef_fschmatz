@@ -1,19 +1,23 @@
 class AppDetails{
 
-  static String appVersion = "1.4.2";
+  static String appVersion = "1.5.0";
   static String appName = "Notef Fschmatz";
   static String repositoryLink = "https://github.com/Fschmatz/notef_fschmatz";
 
   static String changelogCurrent = '''  
+1.5.0
+- Monet
+- Small fixes
+''';
+
+  static String changelogsOld = ''' 
 1.4.2
 - New/Edit in dialogs
 - Added slide to show edit/delete
 - Small fixes
 - UI changes
 - Flutter 3.7
-''';
 
-  static String changelogsOld = ''' 
 1.3.2
 - Small fixes
 - UI changes

@@ -8,9 +8,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  //https://pub.dev/packages/awesome_notifications/example
-
   @override
   Widget build(BuildContext context) {
 

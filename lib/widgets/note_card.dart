@@ -13,12 +13,7 @@ class NoteCard extends StatefulWidget {
   Function(int, String, String) createNotification;
   Function(int) dismissNotification;
 
-  NoteCard(
-      {Key? key,
-      required this.note,
-      required this.refreshHome,
-      required this.createNotification,
-      required this.dismissNotification})
+  NoteCard({Key? key, required this.note, required this.refreshHome, required this.createNotification, required this.dismissNotification})
       : super(key: key);
 }
 
@@ -30,8 +25,7 @@ class _NoteCardState extends State<NoteCard> {
 
   Future<void> _pinAndUnpinNotification() async {
     if (widget.note.pinned == 0) {
-      widget.createNotification(
-          widget.note.id!, widget.note.title!, widget.note.text!);
+      widget.createNotification(widget.note.id!, widget.note.title!, widget.note.text!);
     } else {
       widget.dismissNotification(widget.note.id!);
     }
@@ -64,7 +58,6 @@ class _NoteCardState extends State<NoteCard> {
                 "Yes",
               ),
               onPressed: () {
-                //Navigator.of(context).pop();
                 Navigator.of(context).pop();
                 _delete();
                 if (widget.note.pinned == 1) {
@@ -85,7 +78,7 @@ class _NoteCardState extends State<NoteCard> {
         builder: (BuildContext context) {
           return DialogEditNote(
             noteEdit: widget.note,
-            createNotification:  widget.createNotification,
+            createNotification: widget.createNotification,
             dismissNotification: widget.dismissNotification,
           );
         }).then((_) => widget.refreshHome());
@@ -99,24 +92,24 @@ class _NoteCardState extends State<NoteCard> {
         key: const ValueKey(0),
         startActionPane: ActionPane(
           motion: const ScrollMotion(),
-          children:  [
+          children: [
             SlidableAction(
               autoClose: true,
               onPressed: (context) => showAlertDialogDelete(),
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              foregroundColor: Colors.white,
+              foregroundColor: Theme.of(context).colorScheme.primary,
               icon: Icons.delete_outline_outlined,
               label: 'Delete',
-              borderRadius:  BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12),
             ),
             SlidableAction(
               autoClose: true,
               onPressed: (context) => showAlertDialogEdit(),
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              foregroundColor: Colors.white,
+              foregroundColor: Theme.of(context).colorScheme.primary,
               icon: Icons.edit_outlined,
               label: 'Edit',
-              borderRadius:  BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12),
             ),
           ],
         ),
@@ -126,21 +119,14 @@ class _NoteCardState extends State<NoteCard> {
             child: Column(
               children: <Widget>[
                 ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(
-                      16,
-                      widget.note.text!.isNotEmpty ? 5 : 0,
-                      10,
-                      widget.note.text!.isNotEmpty ? 5 : 0),
+                  contentPadding: EdgeInsets.fromLTRB(16, widget.note.text!.isNotEmpty ? 5 : 0, 10, widget.note.text!.isNotEmpty ? 5 : 0),
                   title: Text(
                     widget.note.title!,
                   ),
                   subtitle: widget.note.text!.isNotEmpty
                       ? Text(
                           widget.note.text!,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor
-                          ),
+                          style: TextStyle(fontSize: 14, color: Theme.of(context).hintColor),
                         )
                       : null,
                   trailing: SizedBox(
@@ -152,23 +138,11 @@ class _NoteCardState extends State<NoteCard> {
                       },
                       child: Icon(
                         Icons.push_pin_outlined,
-                        color: widget.note.pinned == 1
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).textTheme.headline6!.color,
+                        color: widget.note.pinned == 1 ? Theme.of(context).colorScheme.primary : null,
                       ),
                       style: ElevatedButton.styleFrom(
+                          backgroundColor: widget.note.pinned == 1 ? Theme.of(context).colorScheme.primaryContainer : null,
                           elevation: 0,
-                          primary: widget.note.pinned == 1
-                              ? Theme.of(context)
-                                  .colorScheme
-                                  .primary
-                                  .withOpacity(0.4)
-                              : null,
-                          onPrimary: Theme.of(context)
-                              .textTheme
-                              .headline6!
-                              .color!
-                              .withOpacity(0.8),
                           shape: const StadiumBorder()),
                     ),
                   ),

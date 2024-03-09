@@ -13,7 +13,7 @@ class NotesList extends StatefulWidget {
 
 class _NotesListState extends State<NotesList> {
   List<Map<String, dynamic>> notesList = [];
-  final Notes = NoteDao.instance;
+  final notesDao = NoteDao.instance;
   bool loading = true;
 
   @override
@@ -23,7 +23,7 @@ class _NotesListState extends State<NotesList> {
   }
 
   Future<void> getAll() async {
-    var resp = await Notes.queryAllRowsDesc();
+    var resp = await notesDao.queryAllRowsDesc();
     notesList = resp;
 
     setState(() {
@@ -93,9 +93,8 @@ class _NotesListState extends State<NotesList> {
             builder: (BuildContext context) {
               return DialogNewNote(createNotification: createNotification);
             }).then((_) => getAll()),
-        child: Icon(
+        child: const Icon(
           Icons.add,
-          color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
     );

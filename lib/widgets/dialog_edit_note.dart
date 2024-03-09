@@ -104,7 +104,6 @@ class _DialogEditNoteState extends State<DialogEditNote> {
       actions: [
         TextButton(
             onPressed: () {
-              // Navigator.of(context).pop();
               Navigator.of(context).pop();
             },
             child: const Text('Cancel')),
@@ -112,7 +111,6 @@ class _DialogEditNoteState extends State<DialogEditNote> {
             onPressed: () {
               if (validateTextFields()) {
                 _updateNote();
-                // Navigator.of(context).pop();
                 Navigator.of(context).pop();
               } else {
                 setState(() {

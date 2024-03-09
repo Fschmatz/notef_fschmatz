@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import '../db/note_dao.dart';
 
 class DialogNewNote extends StatefulWidget {
-
   Function(int, String, String) createNotification;
 
   DialogNewNote({Key? key, required this.createNotification}) : super(key: key);
@@ -15,18 +14,13 @@ class DialogNewNote extends StatefulWidget {
 }
 
 class _DialogNewNoteState extends State<DialogNewNote> {
-
   final dbNotes = NoteDao.instance;
   TextEditingController controllerTitle = TextEditingController();
   TextEditingController controllerNote = TextEditingController();
   bool _validTitle = true;
 
   void _saveNote() async {
-    Map<String, dynamic> row = {
-      NoteDao.columnTitle: controllerTitle.text,
-      NoteDao.columnText: controllerNote.text,
-      NoteDao.columnPinned: 1
-    };
+    Map<String, dynamic> row = {NoteDao.columnTitle: controllerTitle.text, NoteDao.columnText: controllerNote.text, NoteDao.columnPinned: 1};
     final id = await dbNotes.insert(row);
     widget.createNotification(
       id,
@@ -45,10 +39,8 @@ class _DialogNewNoteState extends State<DialogNewNote> {
 
   @override
   Widget build(BuildContext context) {
-
     return AlertDialog(
       title: const Text('New'),
-
       content: SizedBox(
           width: 280.0,
           child: Column(
@@ -68,6 +60,7 @@ class _DialogNewNoteState extends State<DialogNewNote> {
                       labelText: "Title",
                       helperText: "* Required",
                       counterText: "",
+                      border: const OutlineInputBorder(),
                       errorText: (_validTitle) ? null : "Title is empty"),
                 ),
               ),
@@ -82,15 +75,17 @@ class _DialogNewNoteState extends State<DialogNewNote> {
                     controller: controllerNote,
                     decoration: const InputDecoration(
                       labelText: "Note",
+                      border: OutlineInputBorder(),
                       counterText: "",
                     )),
               ),
             ],
-          )
-      ),
+          )),
       actions: [
         TextButton(
-            onPressed: () {Navigator.of(context).pop();},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
             child: const Text('Cancel')),
         TextButton(
             onPressed: () {
@@ -102,7 +97,7 @@ class _DialogNewNoteState extends State<DialogNewNote> {
                   _validTitle;
                 });
               }
-              },
+            },
             child: const Text('Save'))
       ],
     );
