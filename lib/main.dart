@@ -12,7 +12,7 @@ Future<void> main() async {
         NotificationChannel(
             channelKey: 'basic_channel',
             channelName: 'Basic notifications',
-            channelDescription: 'Notification channel for basic tests',
+            channelDescription: '',
             defaultColor: const Color(0xFFFF965b),
             ),
       ],
