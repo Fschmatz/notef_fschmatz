@@ -138,10 +138,10 @@ class _NoteCardState extends State<NoteCard> {
                       },
                       child: Icon(
                         Icons.push_pin_outlined,
-                        color: widget.note.pinned == 1 ? Theme.of(context).colorScheme.primary : null,
+                        color: widget.note.pinned == 1 ? Theme.of(context).colorScheme.onTertiaryContainer : null,
                       ),
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: widget.note.pinned == 1 ? Theme.of(context).colorScheme.primaryContainer : null,
+                          backgroundColor: widget.note.pinned == 1 ? Theme.of(context).colorScheme.tertiaryContainer : null,
                           elevation: 0,
                           shape: const StadiumBorder()),
                     ),

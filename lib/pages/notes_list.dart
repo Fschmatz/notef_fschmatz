@@ -19,6 +19,11 @@ class _NotesListState extends State<NotesList> {
   @override
   void initState() {
     super.initState();
+
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) => {
+          if (!isAllowed) {AwesomeNotifications().requestPermissionToSendNotifications()}
+    });
+
     getAll();
   }
 
@@ -61,31 +66,29 @@ class _NotesListState extends State<NotesList> {
                     'It\'s a little empty in here',
                     style: TextStyle(fontSize: 18),
                   ))
-                : ListView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    children: [
-                        ListView.builder(
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: notesList.length,
-                          itemBuilder: (context, index) {
-                            return NoteCard(
-                              note: Note(
-                                notesList[index]['id'],
-                                notesList[index]['title'],
-                                notesList[index]['text'],
-                                notesList[index]['pinned'] ?? 0,
-                              ),
-                              refreshHome: getAll,
-                              createNotification: createNotification,
-                              dismissNotification: dismissNotification,
-                            );
-                          },
-                        ),
-                        const SizedBox(
-                          height: 100,
-                        ),
-                      ]),
+                : ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
+                    ListView.builder(
+                      physics: const ScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: notesList.length,
+                      itemBuilder: (context, index) {
+                        return NoteCard(
+                          note: Note(
+                            notesList[index]['id'],
+                            notesList[index]['title'],
+                            notesList[index]['text'],
+                            notesList[index]['pinned'] ?? 0,
+                          ),
+                          refreshHome: getAll,
+                          createNotification: createNotification,
+                          dismissNotification: dismissNotification,
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                  ]),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => showDialog(

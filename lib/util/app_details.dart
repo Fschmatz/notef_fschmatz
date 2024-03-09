@@ -1,11 +1,11 @@
 class AppDetails{
 
-  static String appVersion = "1.5.0";
+  static String appVersion = "1.5.1";
   static String appName = "Notef Fschmatz";
   static String repositoryLink = "https://github.com/Fschmatz/notef_fschmatz";
 
   static String changelogCurrent = '''  
-1.5.0
+1.5.1
 - Monet
 - Small fixes
 ''';

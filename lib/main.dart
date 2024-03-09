@@ -6,24 +6,16 @@ import 'app_theme.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  AwesomeNotifications().initialize(
+  await AwesomeNotifications().initialize(
       'resource://drawable/res_pin_png',
       [
         NotificationChannel(
             channelKey: 'basic_channel',
-            channelName: 'Basic notifications',
-            channelDescription: '',
-            defaultColor: const Color(0xFFFF965b),
-            ),
-      ],
-      debug: true
-  );
-
-  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-    if (!isAllowed) {
-      AwesomeNotifications().requestPermissionToSendNotifications();
-    }
-  });
+            channelName: 'Notifications',
+            channelDescription: 'All Notifications',
+            playSound: true
+        )
+      ]);
 
   runApp(
     EasyDynamicThemeWidget(
