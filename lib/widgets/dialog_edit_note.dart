@@ -37,17 +37,20 @@ class _DialogEditNoteState extends State<DialogEditNote> {
     if (widget.noteEdit.pinned == 1) {
       widget.dismissNotification(widget.noteEdit.id!);
     }
+
     Map<String, dynamic> row = {
       NoteDao.columnId: widget.noteEdit.id,
       NoteDao.columnTitle: controllerTitle.text,
       NoteDao.columnText: controllerNote.text,
       NoteDao.columnPinned: 1
     };
+
     widget.createNotification(
       widget.noteEdit.id!,
       controllerTitle.text,
       controllerNote.text,
     );
+
     await dbNotes.update(row);
   }
 
