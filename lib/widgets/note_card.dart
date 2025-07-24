@@ -1,43 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:notef_fschmatz/classes/note.dart';
-import 'package:notef_fschmatz/db/note_dao.dart';
-import 'package:notef_fschmatz/widgets/dialog_edit_note.dart';
+
+import '../service/note_service.dart';
+import 'dialog_store_note.dart';
 
 class NoteCard extends StatefulWidget {
   @override
-  _NoteCardState createState() => _NoteCardState();
+  State<NoteCard> createState() => _NoteCardState();
 
-  Note note;
-  Function() refreshHome;
-  Function(int, String, String) createNotification;
-  Function(int) dismissNotification;
+  final Note note;
 
-  NoteCard({Key? key, required this.note, required this.refreshHome, required this.createNotification, required this.dismissNotification})
-      : super(key: key);
+  const NoteCard({Key? key, required this.note}) : super(key: key);
 }
 
 class _NoteCardState extends State<NoteCard> {
-  Future<void> _delete() async {
-    final dbDayNotes = NoteDao.instance;
-    await dbDayNotes.delete(widget.note.id!);
-  }
+  final NoteService noteService = NoteService();
 
   Future<void> _pinAndUnpinNotification() async {
-    if (widget.note.pinned == 0) {
-      widget.createNotification(widget.note.id!, widget.note.title!, widget.note.text!);
+    if (widget.note.isPinned()) {
+      noteService.dismissNotification(widget.note.id!);
     } else {
-      widget.dismissNotification(widget.note.id!);
+      noteService.createNotification(widget.note.id!, widget.note.title!, widget.note.text!);
     }
-    _changeState();
+
+    noteService.changeState(widget.note);
   }
 
-  Future<void> _changeState() async {
-    final dbNotes = NoteDao.instance;
-    Map<String, dynamic> row = {
-      NoteDao.columnId: widget.note.id,
-      NoteDao.columnPinned: widget.note.pinned == 0 ? 1 : 0,
-    };
-    await dbNotes.update(row);
+  Future<void> _delete() async {
+    noteService.delete(widget.note);
+    Navigator.of(context).pop();
   }
 
   _openDialogDelete() {
@@ -57,12 +48,7 @@ class _NoteCardState extends State<NoteCard> {
                 "Yes",
               ),
               onPressed: () {
-                Navigator.of(context).pop();
                 _delete();
-                if (widget.note.pinned == 1) {
-                  widget.dismissNotification(widget.note.id!);
-                }
-                widget.refreshHome();
               },
             )
           ],
@@ -75,12 +61,8 @@ class _NoteCardState extends State<NoteCard> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return DialogEditNote(
-            noteEdit: widget.note,
-            createNotification: widget.createNotification,
-            dismissNotification: widget.dismissNotification,
-          );
-        }).then((_) => widget.refreshHome());
+          return DialogStoreNote(note: widget.note);
+        });
   }
 
   @override
@@ -111,14 +93,13 @@ class _NoteCardState extends State<NoteCard> {
                 child: TextButton(
                   onPressed: () {
                     _pinAndUnpinNotification();
-                    widget.refreshHome();
                   },
                   child: Icon(
                     Icons.push_pin_outlined,
-                    color: widget.note.pinned == 1 ? theme.colorScheme.onTertiaryContainer : null,
+                    color: widget.note.isPinned() ? theme.colorScheme.onTertiaryContainer : null,
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: widget.note.pinned == 1 ? theme.colorScheme.tertiaryContainer : null,
+                      backgroundColor: widget.note.isPinned() ? theme.colorScheme.tertiaryContainer : null,
                       elevation: 0,
                       shape: const StadiumBorder()),
                 ),

@@ -1,23 +1,21 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:notef_fschmatz/util/app_details.dart';
+
 import '../../util/dialog_select_theme.dart';
 import 'app_info_page.dart';
 import 'changelog_page.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  State<SettingsPage> createState() => _SettingsPageState();
 
   const SettingsPage({Key? key}) : super(key: key);
 }
 
 class _SettingsPageState extends State<SettingsPage> {
   String getThemeStringFormatted() {
-    String theme = EasyDynamicTheme.of(context)
-        .themeMode
-        .toString()
-        .replaceAll('ThemeMode.', '');
+    String theme = EasyDynamicTheme.of(context).themeMode.toString().replaceAll('ThemeMode.', '');
     if (theme == 'system') {
       theme = 'system default';
     }
@@ -52,11 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             ListTile(
-              title: Text("General",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: themeColorApp)),
+              title: Text("General", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: themeColorApp)),
             ),
             ListTile(
               onTap: () => showDialog(
@@ -73,11 +67,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             ListTile(
-              title: Text("About",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: themeColorApp)),
+              title: Text("About", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: themeColorApp)),
             ),
             ListTile(
               leading: const Icon(

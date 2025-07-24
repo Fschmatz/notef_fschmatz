@@ -1,61 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
-import 'package:notef_fschmatz/classes/note.dart';
-import 'package:notef_fschmatz/db/note_dao.dart';
+import 'package:notef_fschmatz/service/note_service.dart';
 
-class DialogEditNote extends StatefulWidget {
-  Note noteEdit;
-  Function(int, String, String) createNotification;
-  Function(int) dismissNotification;
+import '../classes/note.dart';
 
-  DialogEditNote(
-      {Key? key,
-      required this.noteEdit,
-      required this.createNotification,
-      required this.dismissNotification})
-      : super(key: key);
-
+class DialogStoreNote extends StatefulWidget {
   @override
-  _DialogEditNoteState createState() => _DialogEditNoteState();
+  State<DialogStoreNote> createState() => _DialogStoreNoteState();
+
+  final Note? note;
+
+  const DialogStoreNote({Key? key, this.note}) : super(key: key);
 }
 
-class _DialogEditNoteState extends State<DialogEditNote> {
-  final dbNotes = NoteDao.instance;
-  TextEditingController controllerTitle = TextEditingController();
-  TextEditingController controllerNote = TextEditingController();
+class _DialogStoreNoteState extends State<DialogStoreNote> {
+  final NoteService noteService = NoteService();
+  final TextEditingController _controllerTitle = TextEditingController();
+  final TextEditingController _controllerText = TextEditingController();
   bool _validTitle = true;
+  bool _isUpdate = false;
 
   @override
   void initState() {
     super.initState();
-    controllerTitle.text = widget.noteEdit.title!;
-    controllerNote.text = widget.noteEdit.text!;
+
+    _isUpdate = widget.note != null;
+
+    if (_isUpdate) {
+      _controllerTitle.text = widget.note!.title!;
+      _controllerText.text = widget.note!.text!;
+    }
   }
 
-  void _updateNote() async {
-    if (widget.noteEdit.pinned == 1) {
-      widget.dismissNotification(widget.noteEdit.id!);
+  void _store() {
+    if (validateTextFields()) {
+      if (_isUpdate) {
+        _update();
+      } else {
+        _insert();
+      }
+
+      Navigator.of(context).pop();
+    } else {
+      setState(() {
+        _validTitle;
+      });
     }
+  }
 
-    Map<String, dynamic> row = {
-      NoteDao.columnId: widget.noteEdit.id,
-      NoteDao.columnTitle: controllerTitle.text,
-      NoteDao.columnText: controllerNote.text,
-      NoteDao.columnPinned: 1
-    };
+  void _insert() async {
+    noteService.insert(_controllerTitle.text, _controllerText.text);
+  }
 
-    widget.createNotification(
-      widget.noteEdit.id!,
-      controllerTitle.text,
-      controllerNote.text,
-    );
-
-    await dbNotes.update(row);
+  void _update() async {
+    noteService.update(widget.note!, _controllerTitle.text, _controllerText.text);
   }
 
   bool validateTextFields() {
-    if (controllerTitle.text.isEmpty) {
+    if (_controllerTitle.text.isEmpty) {
       _validTitle = false;
       return false;
     }
@@ -65,7 +67,7 @@ class _DialogEditNoteState extends State<DialogEditNote> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Edit'),
+      title: const Text('New'),
       content: SizedBox(
           width: 280.0,
           child: Column(
@@ -80,7 +82,7 @@ class _DialogEditNoteState extends State<DialogEditNote> {
                   maxLength: 50,
                   maxLengthEnforcement: MaxLengthEnforcement.enforced,
                   textCapitalization: TextCapitalization.sentences,
-                  controller: controllerTitle,
+                  controller: _controllerTitle,
                   decoration: InputDecoration(
                       labelText: "Title",
                       helperText: "* Required",
@@ -97,11 +99,11 @@ class _DialogEditNoteState extends State<DialogEditNote> {
                     maxLength: 200,
                     maxLengthEnforcement: MaxLengthEnforcement.enforced,
                     textCapitalization: TextCapitalization.sentences,
-                    controller: controllerNote,
+                    controller: _controllerText,
                     decoration: const InputDecoration(
                       labelText: "Note",
-                      counterText: "",
                       border: OutlineInputBorder(),
+                      counterText: "",
                     )),
               ),
             ],
@@ -114,14 +116,7 @@ class _DialogEditNoteState extends State<DialogEditNote> {
             child: const Text('Cancel')),
         TextButton(
             onPressed: () {
-              if (validateTextFields()) {
-                _updateNote();
-                Navigator.of(context).pop();
-              } else {
-                setState(() {
-                  _validTitle;
-                });
-              }
+              _store();
             },
             child: const Text('Save'))
       ],

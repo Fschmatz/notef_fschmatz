@@ -1,17 +1,22 @@
-class AppDetails{
-
-  static String appVersion = "1.5.2";
+class AppDetails {
+  static String appVersion = "1.6.0";
   static String appName = "Notef Fschmatz";
   static String repositoryLink = "https://github.com/Fschmatz/notef_fschmatz";
 
-  static String changelogCurrent = '''  
+  static String changelogCurrent = '''
+$appVersion
+- Async Redux
+- Update Flutter 3.32
+- Themed icon
+- Bug fixes
+''';
+
+  static String changelogsOld = '''
 1.5.2
 - Monet
 - Removed slide to show edit/delete
 - Small fixes
-''';
-
-  static String changelogsOld = ''' 
+ 
 1.4.2
 - New/Edit in dialogs
 - Added slide to show edit/delete
@@ -55,5 +60,4 @@ class AppDetails{
 0.1.0
 - Project start 
 ''';
-
 }
