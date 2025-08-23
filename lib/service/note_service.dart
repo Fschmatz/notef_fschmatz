@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:notef_fschmatz/service/store_service.dart';
 
@@ -71,7 +73,8 @@ class NoteService extends StoreService {
           notificationLayout: NotificationLayout.BigText,
           locked: true,
           autoDismissible: false,
-          body: textBody),
+          body: textBody,
+          backgroundColor: const Color.fromARGB(255, 248, 144, 88)),
     );
   }
 

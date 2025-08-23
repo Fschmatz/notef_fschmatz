@@ -70,6 +70,7 @@ class _NoteCardState extends State<NoteCard> {
     final theme = Theme.of(context);
 
     return Card(
+      color: theme.colorScheme.surfaceContainerHigh,
       margin: const EdgeInsets.fromLTRB(10, 4, 10, 4),
       child: InkWell(
         onTap: () => _openDialogEdit(),
@@ -96,6 +97,7 @@ class _NoteCardState extends State<NoteCard> {
                   },
                   child: Icon(
                     Icons.push_pin_outlined,
+                    size: 22,
                     color: widget.note.isPinned() ? theme.colorScheme.onTertiaryContainer : null,
                   ),
                   style: ElevatedButton.styleFrom(

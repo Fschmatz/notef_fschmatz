@@ -1,7 +1,7 @@
 name: notef_fschmatz
 description: Flutter project.
 publish_to: 'none'
-version: 1.5.2
+version: 1.6.1
 
 environment:
   sdk: '>=3.2.6 <4.0.0'
@@ -13,7 +13,6 @@ dependencies:
   path_provider: ^2.1.5
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.1
-  #intl:
   awesome_notifications: ^0.10.1
   easy_dynamic_theme: ^2.3.1
   cupertino_icons: ^1.0.2
