@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:notef_fschmatz/classes/note.dart';
+import 'package:notef_fschmatz/entity/note.dart';
 import 'package:notef_fschmatz/widgets/note_card.dart';
 
 import '../redux/app_state.dart';

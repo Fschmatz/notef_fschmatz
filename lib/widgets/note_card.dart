@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notef_fschmatz/classes/note.dart';
+import 'package:notef_fschmatz/entity/note.dart';
 
 import '../service/note_service.dart';
 import 'dialog_store_note.dart';
@@ -31,32 +31,6 @@ class _NoteCardState extends State<NoteCard> {
     Navigator.of(context).pop();
   }
 
-  _openDialogDelete() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text(
-            "Confirm",
-          ),
-          content: const Text(
-            "Delete ?",
-          ),
-          actions: [
-            TextButton(
-              child: const Text(
-                "Yes",
-              ),
-              onPressed: () {
-                _delete();
-              },
-            )
-          ],
-        );
-      },
-    );
-  }
-
   _openDialogEdit() {
     showDialog(
         context: context,
@@ -70,11 +44,11 @@ class _NoteCardState extends State<NoteCard> {
     final theme = Theme.of(context);
 
     return Card(
-      color: theme.colorScheme.surfaceContainerHigh,
+      color: theme.colorScheme.surfaceContainerHighest,
       margin: const EdgeInsets.fromLTRB(10, 4, 10, 4),
       child: InkWell(
-        onTap: () => _openDialogEdit(),
-        onLongPress: () => _openDialogDelete(),
+        onTap: () => _pinAndUnpinNotification(),
+        onLongPress: () => _openDialogEdit(),
         borderRadius: BorderRadius.circular(12),
         child: Column(
           children: <Widget>[
@@ -89,21 +63,17 @@ class _NoteCardState extends State<NoteCard> {
                       style: TextStyle(fontSize: 14, color: theme.hintColor),
                     )
                   : null,
-              trailing: SizedBox(
+              trailing: Container(
                 width: 60,
-                child: TextButton(
-                  onPressed: () {
-                    _pinAndUnpinNotification();
-                  },
-                  child: Icon(
-                    Icons.push_pin_outlined,
-                    size: 22,
-                    color: widget.note.isPinned() ? theme.colorScheme.onTertiaryContainer : null,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: widget.note.isPinned() ? theme.colorScheme.tertiaryContainer : null,
-                      elevation: 0,
-                      shape: const StadiumBorder()),
+                height: 40,
+                decoration: BoxDecoration(
+                  color: widget.note.isPinned() ? theme.colorScheme.tertiaryContainer : null,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                ),
+                child: Icon(
+                  Icons.push_pin_outlined,
+                  size: 24,
+                  color: widget.note.isPinned() ? theme.colorScheme.onTertiaryContainer : null,
                 ),
               ),
             ),

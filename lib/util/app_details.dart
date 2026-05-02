@@ -1,5 +1,5 @@
 class AppDetails {
-  static String appVersion = "1.6.1";
+  static String appVersion = "1.6.2";
   static String appName = "Notef Fschmatz";
   static String repositoryLink = "https://github.com/Fschmatz/notef_fschmatz";
 
@@ -8,6 +8,8 @@ $appVersion
 - Async Redux
 - Update Flutter 3.32
 - Themed icon
+- Logic Changes
+- UI changes
 - Bug fixes
 ''';
 

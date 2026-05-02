@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:notef_fschmatz/service/note_service.dart';
 
-import '../classes/note.dart';
+import '../entity/note.dart';
 
 class DialogStoreNote extends StatefulWidget {
   @override
@@ -56,6 +56,11 @@ class _DialogStoreNoteState extends State<DialogStoreNote> {
     noteService.update(widget.note!, _controllerTitle.text, _controllerText.text);
   }
 
+  void _delete() async {
+    noteService.delete(widget.note!);
+    Navigator.of(context).pop();
+  }
+
   bool validateTextFields() {
     if (_controllerTitle.text.isEmpty) {
       _validTitle = false;
@@ -66,10 +71,12 @@ class _DialogStoreNoteState extends State<DialogStoreNote> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AlertDialog(
-      title: const Text('New'),
+      title: Text(_isUpdate ? 'Edit' : 'New'),
       content: SizedBox(
-          width: 280.0,
+          width: (MediaQuery.of(context).size.width * 0.9),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -109,16 +116,28 @@ class _DialogStoreNoteState extends State<DialogStoreNote> {
             ],
           )),
       actions: [
-        TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Cancel')),
-        TextButton(
-            onPressed: () {
-              _store();
-            },
-            child: const Text('Save'))
+        Row(
+          children: [
+            if (_isUpdate)
+              TextButton(
+                onPressed: () {
+                  _delete();
+                },
+                child: Text('Delete', style: TextStyle(color: theme.colorScheme.error)),
+              ),
+            const Spacer(),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel')),
+            TextButton(
+                onPressed: () {
+                  _store();
+                },
+                child: const Text('Save'))
+          ],
+        )
       ],
     );
   }

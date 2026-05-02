@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:notef_fschmatz/service/store_service.dart';
 
-import '../classes/note.dart';
-import '../db/note_dao.dart';
+import '../entity/note.dart';
+import '../dao/note_dao.dart';
 
 class NoteService extends StoreService {
   final dbNote = NoteDao.instance;

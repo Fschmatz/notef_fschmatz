@@ -1,4 +1,4 @@
-import '../classes/note.dart';
+import '../entity/note.dart';
 import '../service/note_service.dart';
 import 'app_action.dart';
 import 'app_state.dart';

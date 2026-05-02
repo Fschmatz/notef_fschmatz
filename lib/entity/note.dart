@@ -15,5 +15,14 @@ class Note {
     );
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'text': text,
+      'pinned': pinned,
+    };
+  }
+
   bool isPinned() => pinned != null && pinned == 1;
 }

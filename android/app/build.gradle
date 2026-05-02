@@ -23,7 +23,8 @@ if (flutterVersionName == null) {
 }
 
 android {
-    compileSdkVersion 35
+    namespace 'com.fschmatz.notef_fschmatz'
+    compileSdkVersion 36
     ndkVersion = "27.0.12077973"
 
     compileOptions {
@@ -57,7 +58,7 @@ android {
             shrinkResources false
         }
     }
-    namespace 'com.fschmatz.notef_fschmatz'
+
 }
 
 flutter {

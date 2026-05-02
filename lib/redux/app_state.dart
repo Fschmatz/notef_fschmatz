@@ -1,4 +1,4 @@
-import '../classes/note.dart';
+import '../entity/note.dart';
 
 class AppState {
   List<Note> notes = [];
