@@ -5,6 +5,7 @@ import 'package:notef_fschmatz/widgets/note_card.dart';
 
 import '../redux/app_state.dart';
 import '../redux/selectors.dart';
+import '../util/widget/segmented_widget_list.dart';
 
 class NotesList extends StatefulWidget {
   @override
@@ -21,25 +22,24 @@ class _NotesListState extends State<NotesList> {
         return selectNotes();
       },
       builder: (context, notes) {
-        return notes.isEmpty
-            ? const Center(
-                child: Text(
-                '...',
-                style: TextStyle(fontSize: 18),
-              ))
-            : ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
-                ListView.builder(
-                  physics: const ScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: notes.length,
-                  itemBuilder: (context, index) {
-                    return NoteCard(note: notes[index]);
-                  },
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-              ]);
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: notes.isEmpty
+              ? const Center(
+                  child: Text(
+                  '...',
+                  style: TextStyle(fontSize: 18),
+                ))
+              : ListView(padding: const EdgeInsets.only(bottom: 75), physics: const AlwaysScrollableScrollPhysics(), children: [
+                  SegmentedWidgetList(
+                    children: notes
+                        .map(
+                          (note) => NoteCard(key: ValueKey(note.id), note: note),
+                        )
+                        .toList(),
+                  ),
+                ]),
+        );
       },
     );
   }

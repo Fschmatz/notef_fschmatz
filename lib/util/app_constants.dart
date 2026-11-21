@@ -1,19 +1,24 @@
-class AppDetails {
-  static String appVersion = "1.6.2";
+class AppConstants {
+  static String appVersion = "1.7.0";
   static String appName = "Notef Fschmatz";
   static String repositoryLink = "https://github.com/Fschmatz/notef_fschmatz";
 
   static String changelogCurrent = '''
 $appVersion
+- Update Flutter 3.44
+- UI changes
+- Bug fixes
+''';
+
+  static String changelogsOld = '''
+1.6.2
 - Async Redux
 - Update Flutter 3.32
 - Themed icon
 - Logic Changes
 - UI changes
 - Bug fixes
-''';
 
-  static String changelogsOld = '''
 1.5.2
 - Monet
 - Removed slide to show edit/delete

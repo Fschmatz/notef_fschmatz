@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notef_fschmatz/util/app_details.dart';
+import 'package:notef_fschmatz/util/app_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppInfoPage extends StatelessWidget {
@@ -7,64 +7,121 @@ class AppInfoPage extends StatelessWidget {
 
   void _launchGithub() {
     launchUrl(
-      Uri.parse(AppDetails.repositoryLink),
+      Uri.parse(AppConstants.repositoryLink),
       mode: LaunchMode.externalApplication,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    Color? themeColorApp = Theme.of(context).colorScheme.primary;
-
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("App Info"),
-        ),
-        body: ListView(children: <Widget>[
-          const SizedBox(height: 20),
-          const CircleAvatar(
-            radius: 55,
-            backgroundColor: Colors.lightGreen,
-            child: CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/avatar.jpg'),
+      appBar: AppBar(title: const Text("App Info")),
+      body: ListView(
+        padding: const EdgeInsets.only(bottom: 24),
+        children: <Widget>[
+          Card(
+            margin: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+            color: Theme.of(context).colorScheme.primaryContainer,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+              child: Column(
+                children: [
+                  const CircleAvatar(
+                    radius: 55,
+                    backgroundColor: Colors.blueAccent,
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/avatar.jpg'),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    AppConstants.appName,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Version ${AppConstants.appVersion}',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimaryContainer.withValues(alpha: 0.8),
+                        ),
+                  ),
+                ],
+              ),
             ),
           ),
-          const SizedBox(height: 15),
-          Center(
-            child: Text(AppDetails.appName + " " + AppDetails.appVersion,
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: themeColorApp)),
-          ),
-          const SizedBox(height: 15),
-          ListTile(
-            title: Text("Dev", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: themeColorApp)),
-          ),
-          const ListTile(
-            leading: Icon(Icons.info_outline),
-            title: Text(
-              "Application created using Flutter and the Dart language, used for testing and learning.",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                  child: Text(
+                    "Source Code",
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  child: ListTile(
+                    onTap: () {
+                      _launchGithub();
+                    },
+                    leading: const Icon(Icons.open_in_new_outlined),
+                    title: const Text("View on GitHub"),
+                  ),
+                ),
+              ],
             ),
           ),
-          ListTile(
-            title: Text("Source Code", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: themeColorApp)),
-          ),
-          ListTile(
-            onTap: () {
-              _launchGithub();
-            },
-            leading: const Icon(Icons.open_in_new_outlined),
-            title: const Text("View on GitHub",
-                style: TextStyle(decoration: TextDecoration.underline, decorationColor: Colors.blue, color: Colors.blue)),
-          ),
-          ListTile(
-            title: Text("Quote", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: themeColorApp)),
-          ),
-          const ListTile(
-            leading: Icon(Icons.messenger_outline),
-            title: Text(
-              "The key to efficient development is to make interesting new mistakes.",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                  child: Text(
+                    "Quote",
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "The key to efficient development is to make interesting new mistakes.",
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                  height: 1.5,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }

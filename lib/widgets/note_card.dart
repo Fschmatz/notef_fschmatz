@@ -26,11 +26,6 @@ class _NoteCardState extends State<NoteCard> {
     noteService.changeState(widget.note);
   }
 
-  Future<void> _delete() async {
-    noteService.delete(widget.note);
-    Navigator.of(context).pop();
-  }
-
   _openDialogEdit() {
     showDialog(
         context: context,
@@ -42,42 +37,41 @@ class _NoteCardState extends State<NoteCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isPinned = widget.note.isPinned();
+    final Color iconColor = isPinned ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurfaceVariant;
+    final Color iconBackground = isPinned ? theme.colorScheme.primaryContainer : theme.colorScheme.surfaceContainerHighest;
+    final Color? tileBackgroundColor = isPinned ? theme.colorScheme.secondaryContainer : null;
+    final TextStyle? titleStyle = theme.textTheme.titleMedium?.copyWith(
+        color: isPinned ? theme.colorScheme.onSecondaryContainer : theme.colorScheme.onSurface,
+        fontWeight: isPinned ? FontWeight.w600 : FontWeight.w500);
+    final TextStyle? subtitleStyle = theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant);
 
-    return Card(
-      color: theme.colorScheme.surfaceContainerHighest,
-      margin: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-      child: InkWell(
-        onTap: () => _pinAndUnpinNotification(),
-        onLongPress: () => _openDialogEdit(),
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          children: <Widget>[
-            ListTile(
-              contentPadding: EdgeInsets.fromLTRB(16, widget.note.text!.isNotEmpty ? 5 : 0, 10, widget.note.text!.isNotEmpty ? 5 : 0),
-              title: Text(
-                widget.note.title!,
-              ),
-              subtitle: widget.note.text!.isNotEmpty
-                  ? Text(
-                      widget.note.text!,
-                      style: TextStyle(fontSize: 14, color: theme.hintColor),
-                    )
-                  : null,
-              trailing: Container(
-                width: 60,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: widget.note.isPinned() ? theme.colorScheme.tertiaryContainer : null,
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                ),
-                child: Icon(
-                  Icons.push_pin_outlined,
-                  size: 24,
-                  color: widget.note.isPinned() ? theme.colorScheme.onTertiaryContainer : null,
-                ),
-              ),
-            ),
-          ],
+    return ListTile(
+      tileColor: tileBackgroundColor,
+      onTap: () => _pinAndUnpinNotification(),
+      onLongPress: () => _openDialogEdit(),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      title: Text(
+        widget.note.title!,
+        style: titleStyle,
+      ),
+      subtitle: widget.note.text!.isNotEmpty
+          ? Text(
+              widget.note.text!,
+              style: subtitleStyle,
+            )
+          : null,
+      trailing: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: iconBackground,
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
+        ),
+        child: Icon(
+          Icons.push_pin_outlined,
+          size: 22,
+          color: iconColor,
         ),
       ),
     );

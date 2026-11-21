@@ -85,31 +85,26 @@ class _DialogStoreNoteState extends State<DialogStoreNote> {
                 child: TextField(
                   autofocus: true,
                   minLines: 1,
-                  maxLines: 2,
+                  maxLines: 3,
                   maxLength: 50,
                   maxLengthEnforcement: MaxLengthEnforcement.enforced,
                   textCapitalization: TextCapitalization.sentences,
                   controller: _controllerTitle,
                   decoration: InputDecoration(
-                      labelText: "Title",
-                      helperText: "* Required",
-                      counterText: "",
-                      border: const OutlineInputBorder(),
-                      errorText: (_validTitle) ? null : "Title is empty"),
+                      labelText: "Title", helperText: "* Required", counterText: "", errorText: (_validTitle) ? null : "Title is empty"),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                 child: TextField(
                     minLines: 1,
-                    maxLines: 3,
+                    maxLines: 4,
                     maxLength: 200,
                     maxLengthEnforcement: MaxLengthEnforcement.enforced,
                     textCapitalization: TextCapitalization.sentences,
                     controller: _controllerText,
                     decoration: const InputDecoration(
                       labelText: "Note",
-                      border: OutlineInputBorder(),
                       counterText: "",
                     )),
               ),
@@ -123,7 +118,7 @@ class _DialogStoreNoteState extends State<DialogStoreNote> {
                 onPressed: () {
                   _delete();
                 },
-                child: Text('Delete', style: TextStyle(color: theme.colorScheme.error)),
+                child: const Text('Delete'),
               ),
             const Spacer(),
             TextButton(
